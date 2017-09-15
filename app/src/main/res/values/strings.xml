@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Never Have I Ever</string>
+
+    <!--Main-->
+    <string name="main_kids">Kids</string>
+    <string name="main_normal">Normal</string>
+    <string name="main_adult">Adults</string>
+</resources>
