@@ -1,5 +1,5 @@
 package com.development.vvoitsekh.neverhaveiever.data
 
 
-class Question {
+data class Question(val text: String) {
 }
