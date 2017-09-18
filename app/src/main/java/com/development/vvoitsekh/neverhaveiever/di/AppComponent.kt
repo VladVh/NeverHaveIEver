@@ -1,13 +1,11 @@
 package com.development.vvoitsekh.neverhaveiever.di
 
 import com.development.vvoitsekh.neverhaveiever.App
+import com.development.vvoitsekh.neverhaveiever.data.source.QuestionRepository
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
-/**
- * Created by v.voitsekh on 13.09.2017.
- */
 
 @Singleton
 @Component(modules = arrayOf(
@@ -16,4 +14,6 @@ import javax.inject.Singleton
         AppModule::class))
 interface AppComponent {
     fun inject(app: App)
+
+    //fun getRepository(): QuestionRepository
 }

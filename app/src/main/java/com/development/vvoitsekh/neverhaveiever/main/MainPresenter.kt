@@ -1,25 +1,21 @@
 package com.development.vvoitsekh.neverhaveiever.main
 
-/**
- * Created by v.voitsekh on 14.09.2017.
- */
-class MainPresenter : MainContract.Presenter {
+import javax.inject.Inject
 
-    private lateinit var mMainView: MainContract.View
+
+class MainPresenter @Inject constructor(view: MainContract.View) : MainContract.Presenter {
+
+    private var mMainView: MainContract.View = view
 
     override fun startKidsGame() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mMainView.showGame(1)
     }
 
     override fun startNormalGame() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mMainView.showGame(2)
     }
 
     override fun startAdultsGame() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun start(view: MainContract.View) {
-        mMainView = view;
+        mMainView.showGame(3)
     }
 }

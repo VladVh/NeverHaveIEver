@@ -35,11 +35,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         mAdultButton.setOnClickListener { mMainPresenter.startAdultsGame() }
     }
 
-    override fun onResume() {
-        super.onResume()
-        mMainPresenter.start(this)
-    }
-
     override fun showGame(level: Int) {
         startActivity(QuestionActivity.newIntent(this, level))
     }

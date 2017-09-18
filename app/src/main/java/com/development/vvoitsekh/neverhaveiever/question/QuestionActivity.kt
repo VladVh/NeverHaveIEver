@@ -4,10 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import butterknife.BindView
+import butterknife.ButterKnife
 
 import com.development.vvoitsekh.neverhaveiever.R
 
-class QuestionActivity : AppCompatActivity() {
+class QuestionActivity : AppCompatActivity(), QuestionContract.View {
+
+    @BindView(R.id.questionTextView)
+    lateinit var mQuestionTextView: TextView
 
     companion object {
         private val LEVEL = "level"
@@ -22,5 +29,8 @@ class QuestionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
+
+        ButterKnife.bind(this)
+        mQuestionTextView.text = intent.extras.getInt(LEVEL).toString()
     }
 }
