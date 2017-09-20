@@ -1,14 +1,16 @@
-package com.development.vvoitsekh.neverhaveiever.data.source
+package com.development.vvoitsekh.neverhaveiever.data.source.local
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.development.vvoitsekh.neverhaveiever.data.source.QuestionsPersistenceContract.QuestionsEntry.TABLE_NAME
-import com.development.vvoitsekh.neverhaveiever.data.source.QuestionsPersistenceContract.QuestionsEntry.COLUMN_NAME_ID
-import com.development.vvoitsekh.neverhaveiever.data.source.QuestionsPersistenceContract.QuestionsEntry.COLUMN_NAME_TEXT
-import com.development.vvoitsekh.neverhaveiever.data.source.QuestionsPersistenceContract.QuestionsEntry.COLUMN_NAME_LEVEL
+import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsPersistenceContract.QuestionsEntry.TABLE_NAME
+import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsPersistenceContract.QuestionsEntry.COLUMN_NAME_ID
+import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsPersistenceContract.QuestionsEntry.COLUMN_NAME_TEXT
+import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsPersistenceContract.QuestionsEntry.COLUMN_NAME_LEVEL
+import javax.inject.Inject
 
-class QuestionsDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class QuestionsDbHelper @Inject constructor(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+
 
     companion object {
         val DATABASE_NAME = "Questions.db"

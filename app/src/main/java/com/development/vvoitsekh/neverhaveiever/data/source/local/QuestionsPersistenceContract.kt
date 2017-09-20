@@ -1,4 +1,4 @@
-package com.development.vvoitsekh.neverhaveiever.data.source
+package com.development.vvoitsekh.neverhaveiever.data.source.local
 
 import android.provider.BaseColumns
 

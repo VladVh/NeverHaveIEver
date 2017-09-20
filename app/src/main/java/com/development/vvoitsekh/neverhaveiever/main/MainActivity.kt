@@ -13,7 +13,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), MainContract.View {
 
     @Inject
-    lateinit var mMainPresenter: MainPresenter
+    lateinit var mPresenter: MainPresenter
 
     @BindView(R.id.mainKidsButton)
     lateinit var mKidsButton: Button
@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
 
         ButterKnife.bind(this);
-        mKidsButton.setOnClickListener { mMainPresenter.startKidsGame() }
-        mNormalButton.setOnClickListener { mMainPresenter.startNormalGame() }
-        mAdultButton.setOnClickListener { mMainPresenter.startAdultsGame() }
+        mKidsButton.setOnClickListener { mPresenter.startKidsGame() }
+        mNormalButton.setOnClickListener { mPresenter.startNormalGame() }
+        mAdultButton.setOnClickListener { mPresenter.startAdultsGame() }
     }
 
     override fun showGame(level: Int) {

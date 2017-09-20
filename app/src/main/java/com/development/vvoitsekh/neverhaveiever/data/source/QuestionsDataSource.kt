@@ -1,9 +1,7 @@
 package com.development.vvoitsekh.neverhaveiever.data.source
 
-import javax.inject.Inject
+import com.development.vvoitsekh.neverhaveiever.data.Question
 
-
-class QuestionsDataSource @Inject constructor(dbHelper: QuestionsDbHelper) {
-
-    private var mDbHelper: QuestionsDbHelper = dbHelper
+interface QuestionsDataSource {
+    fun getQuestions(level: Int): Array<Question>
 }
