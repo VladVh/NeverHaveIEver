@@ -19,11 +19,11 @@ import dagger.BindsInstance
 interface AppComponent {
     fun inject(app: App)
 
-//    @Component.Builder
-//    interface Builder {
-//        @BindsInstance
-//        fun application(application: App): Builder
-//        fun build(): AppComponent
-//    }
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(application: App): Builder
+        fun build(): AppComponent
+    }
     //fun getRepository(): QuestionsRepository
 }

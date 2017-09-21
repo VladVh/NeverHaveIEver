@@ -1,5 +1,6 @@
 package com.development.vvoitsekh.neverhaveiever.data.source
 
+import android.content.Context
 import com.development.vvoitsekh.neverhaveiever.data.source.fake.QuestionsFakeDataSource
 import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsDbHelper
 import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsLocalDataSource
@@ -13,9 +14,14 @@ class QuestionsRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideQuestionsLocalDataSource() = QuestionsLocalDataSource()
+    fun provideDbHelper(context: Context) = QuestionsDbHelper(context)
 
     @Provides
     @Singleton
-    fun provideQuestionsRepository(localDataSource: QuestionsLocalDataSource) = QuestionsRepository(localDataSource)
+    fun provideQuestionsLocalDataSource(mDbHelper: QuestionsDbHelper): QuestionsDataSource
+            = QuestionsFakeDataSource()
+
+    @Provides
+    @Singleton
+    fun provideQuestionsRepository(localDataSource: QuestionsDataSource) = QuestionsRepository(localDataSource)
 }

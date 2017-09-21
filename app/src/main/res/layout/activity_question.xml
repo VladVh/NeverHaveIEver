@@ -8,12 +8,33 @@
     android:layout_height="match_parent"
     tools:context="com.development.vvoitsekh.neverhaveiever.question.QuestionActivity">
 
-    <TextView
-        android:id="@+id/questionTextView"
+    <Button
+        android:id="@+id/questionNextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/main_kids"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="214dp"/>
+        android:layout_marginBottom="100dp"
+        android:text="@string/question_next"/>
+
+    <TextSwitcher
+        android:id="@+id/questionSwitcher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </TextSwitcher>
+
+    <!--<TextView-->
+        <!--android:id="@+id/questionTextView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--tools:text="@string/main_kids"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="214dp"/>-->
+
+
 </RelativeLayout>

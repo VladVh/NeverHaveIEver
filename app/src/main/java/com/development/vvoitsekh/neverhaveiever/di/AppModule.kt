@@ -14,13 +14,9 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideApp(app: App) = app
+    fun provideApp(app: App): Context = app
 
-    @Provides
-    fun provideContext(app: App): Context = app
-
-    @Provides
-    @Singleton
-    fun provideDbHelper(context: Context) = QuestionsDbHelper(context)
+//    @Provides
+//    fun provideContext(app: App): Context = app
 
 }
