@@ -21,6 +21,11 @@ import com.development.vvoitsekh.neverhaveiever.R
 import com.development.vvoitsekh.neverhaveiever.data.Question
 import dagger.android.AndroidInjection
 import javax.inject.Inject
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import android.support.v4.content.ContextCompat
+
 
 class QuestionActivity : AppCompatActivity(), QuestionContract.View {
     @Inject
@@ -48,6 +53,7 @@ class QuestionActivity : AppCompatActivity(), QuestionContract.View {
         setContentView(R.layout.activity_question)
 
         ButterKnife.bind(this)
+
         mQuestionSwitcher.setFactory({
             val textView = TextView(this)
             val layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
