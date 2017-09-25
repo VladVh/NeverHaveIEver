@@ -7,8 +7,9 @@ import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsPersi
 import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsPersistenceContract.QuestionsEntry.COLUMN_NAME_ID
 import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsPersistenceContract.QuestionsEntry.COLUMN_NAME_TEXT
 import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsPersistenceContract.QuestionsEntry.COLUMN_NAME_LEVEL
+import javax.inject.Inject
 
-class QuestionsDbHelper constructor(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class QuestionsDbHelper @Inject constructor(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
 
     companion object {

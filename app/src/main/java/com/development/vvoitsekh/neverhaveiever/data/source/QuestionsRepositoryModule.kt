@@ -14,14 +14,5 @@ class QuestionsRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideDbHelper(context: Context) = QuestionsDbHelper(context)
-
-    @Provides
-    @Singleton
-    fun provideQuestionsLocalDataSource(mDbHelper: QuestionsDbHelper): QuestionsDataSource
-            = QuestionsFakeDataSource()
-
-    @Provides
-    @Singleton
-    fun provideQuestionsRepository(localDataSource: QuestionsDataSource) = QuestionsRepository(localDataSource)
+    fun provideQuestionsRepository(localDataSource: QuestionsLocalDataSource) = QuestionsRepository(localDataSource)
 }

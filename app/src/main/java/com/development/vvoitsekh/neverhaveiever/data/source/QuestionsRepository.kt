@@ -4,7 +4,6 @@ import com.development.vvoitsekh.neverhaveiever.data.Question
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class QuestionsRepository @Inject constructor(localDataSource: QuestionsDataSource): QuestionsDataSource {
 
     private val mQuestionsDataSource: QuestionsDataSource = localDataSource
