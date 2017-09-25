@@ -7,5 +7,6 @@ import android.preference.PreferenceActivity
 class SettingsActivity: PreferenceActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
+        
     }
 }
