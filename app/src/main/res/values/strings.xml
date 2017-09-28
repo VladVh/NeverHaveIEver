@@ -9,4 +9,9 @@
 
     <!--Question-->
     <string name="question_next">Next</string>
+
+    <!--Settings-->
+    <string name="pref_lang">Language</string>
+    <string name="pref_night_mode">Enable night mode</string>
+    <string name="pref_rate">Rate app</string>
 </resources>

@@ -25,9 +25,10 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
+import com.development.vvoitsekh.neverhaveiever.BaseActivity
 
 
-class QuestionActivity : AppCompatActivity(), QuestionContract.View {
+class QuestionActivity : BaseActivity(), QuestionContract.View {
     @Inject
     lateinit var mPresenter: QuestionPresenter
 

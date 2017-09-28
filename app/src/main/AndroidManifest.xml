@@ -24,6 +24,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.development.vvoitsekh.neverhaveiever.main.MainActivity"/>
         </activity>
+        <activity
+            android:name=".settings.SettingsActivity">
+        </activity>
     </application>
 
 </manifest>

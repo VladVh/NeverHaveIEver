@@ -64,19 +64,55 @@ object LocaleHelper {
     }
 
     private fun updateResourcesLegacy(context: Context, language: String?): Context {
-        val locale = Locale(language)
-        Locale.setDefault(locale)
-
-        val resources = context.getResources()
-
-        val configuration = resources.getConfiguration()
-        configuration.locale = locale
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            configuration.setLayoutDirection(locale)
+        var context = context;
+        val config = context.resources.configuration
+        val sysLocale: Locale?
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            sysLocale = getSystemLocale(config)
+        } else {
+            sysLocale = getSystemLocaleLegacy(config)
         }
+        if (!language.equals("") && sysLocale.language != language) {
+            val locale = Locale(language)
+            Locale.setDefault(locale)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                setSystemLocale(config, locale)
+            } else {
+                setSystemLocaleLegacy(config, locale)
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                context = context.createConfigurationContext(config)
+            } else {
+                context.resources.updateConfiguration(config, context.resources.displayMetrics)
+            }
+        }
+        return context;
+//        val locale = Locale(language)
+//        Locale.setDefault(locale)
+//
+//        val resources = context.getResources()
+//
+//        val configuration = resources.getConfiguration()
+//        configuration.locale = locale
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//            configuration.setLayoutDirection(locale)
+//        }
+//        resources.updateConfiguration(configuration, resources.getDisplayMetrics())
+//
+//        return context
+    }
 
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics())
+    fun getSystemLocaleLegacy(config: Configuration): Locale = config.locale
 
-        return context
+    @TargetApi(Build.VERSION_CODES.N)
+    fun getSystemLocale(config: Configuration): Locale = config.locales.get(0)
+
+    fun setSystemLocaleLegacy(config: Configuration, locale: Locale) {
+        config.locale = locale
+    }
+
+    @TargetApi(Build.VERSION_CODES.N)
+    fun setSystemLocale(config: Configuration, locale: Locale) {
+        config.setLocale(locale)
     }
 }
