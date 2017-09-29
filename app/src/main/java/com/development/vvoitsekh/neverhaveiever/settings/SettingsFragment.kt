@@ -9,8 +9,8 @@ import com.development.vvoitsekh.neverhaveiever.LocaleHelper
 import com.development.vvoitsekh.neverhaveiever.R
 
 class SettingsFragment: PreferenceFragment(), SharedPreferences.OnSharedPreferenceChangeListener {
-    val mNightPref = "night_mode"
-    val mLangPref = "language"
+    val mNightPref = "NeverIHaveEver.night_mode"
+    val mLangPref = "NeverIHaveEver.language"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +29,13 @@ class SettingsFragment: PreferenceFragment(), SharedPreferences.OnSharedPreferen
             val value = sharedPreferences?.getString(key, "")
             setPreferenceSummary(langPref, value!!)
             LocaleHelper.setLocale(activity, value)
+            activity.recreate()
         }
         if (key.equals(mNightPref)) {
             val modePref = findPreference(key)
             val value = sharedPreferences?.getBoolean(key, false);
             setPreferenceSummary(modePref, value!!);
+            activity.recreate()
         }
     }
 

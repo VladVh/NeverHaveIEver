@@ -6,4 +6,7 @@
     <string name="main_kids">Для дітей</string>
     <string name="main_normal">Стандартний</string>
     <string name="question_next">Наступне</string>
+    <string name="pref_lang">Мова</string>
+    <string name="pref_night_mode">Ввімкнути нічний режим</string>
+    <string name="pref_rate">Оцінити</string>
 </resources>

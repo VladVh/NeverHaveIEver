@@ -14,14 +14,10 @@ open class BaseActivity: AppCompatActivity() {
         super.attachBaseContext(LocaleHelper.onAttach(newBase!!))
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
-        val themeName = pref.getString("prefSyncFrequency3", "AppTheme")
-        if (themeName.equals("AppTheme")) {
-            setTheme(R.style.AppTheme)
-        } else {
-            setTheme(R.style.AppThemeDark)
-        }
-        super.onCreate(savedInstanceState, persistentState)
+        val night_mode = pref.getBoolean("NeverIHaveEver.night_mode", false)
+        setTheme(if (night_mode) R.style.AppThemeDark else R.style.AppTheme)
+        super.onCreate(savedInstanceState)
     }
 }

@@ -1,19 +1,44 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/background_light</item>
+        <item name="android:textColor">@color/textColorDark</item>
+        <item name="android:buttonStyle">@style/ButtonLight</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppThemeDark" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="ButtonLight" parent="@style/Widget.AppCompat.Button">
+        <item name="android:layout_width">270dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:background">@drawable/buttonshape</item>
+        <item name="android:shadowColor">#A8A8A8</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:startColor">#E0E872</item>
+        <item name="android:endColor">#4551FF</item>
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:background">@drawable/background_dark</item>
+        <item name="android:windowBackground">@drawable/background_dark</item>
+        <item name="android:textColor">@color/textColorLight</item>
+        <item name="android:buttonStyle">@style/ButtonDark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ButtonDark" parent="@style/Widget.AppCompat.Button">
+        <item name="android:background">@drawable/buttonshape</item>
+        <item name="android:shadowColor">#A8A8A8</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:startColor">#61630A</item>
+        <item name="android:endColor">#0E1D7D</item>
     </style>
 </resources>

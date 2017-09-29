@@ -13,7 +13,7 @@ import java.util.Locale;
 
 object LocaleHelper {
 
-    private val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
+    private val SELECTED_LANGUAGE = "NeverIHaveEver.language"
 
     fun onAttach(context: Context): Context {
         val lang = getPersistedData(context, Locale.getDefault().getLanguage())
@@ -53,7 +53,7 @@ object LocaleHelper {
 
     @TargetApi(Build.VERSION_CODES.N)
     private fun updateResources(context: Context, language: String?): Context {
-        val locale = Locale(language)
+        val locale = Locale.forLanguageTag(language);
         Locale.setDefault(locale)
 
         val configuration = context.getResources().getConfiguration()

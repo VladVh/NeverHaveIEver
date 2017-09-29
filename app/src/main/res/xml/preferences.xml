@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
-        android:key="language"
+        android:key="NeverIHaveEver.language"
         android:title="@string/pref_lang"
         android:entries="@array/lang_entries"
         android:entryValues="@array/lang_values"
         />
     <SwitchPreference
-        android:key="night_mode"
+        android:key="NeverIHaveEver.night_mode"
         android:title="@string/pref_night_mode"
         android:defaultValue="false"
+        android:showText="false"
         />
     <Preference
         android:key="rate"

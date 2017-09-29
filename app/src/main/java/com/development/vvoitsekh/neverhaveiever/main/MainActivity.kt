@@ -39,10 +39,16 @@ class MainActivity : BaseActivity(), MainContract.View {
         mKidsButton.setOnClickListener { mPresenter.startKidsGame() }
         mNormalButton.setOnClickListener { mPresenter.startNormalGame() }
         mAdultButton.setOnClickListener { mPresenter.startAdultsGame() }
-        mSettingsButton.setOnClickListener { startActivity(Intent(this, SettingsActivity::class.java)) }
+        mSettingsButton.setOnClickListener { startActivityForResult(Intent(this, SettingsActivity::class.java), 0) }
     }
 
     override fun showGame(level: Int) {
         startActivity(QuestionActivity.newIntent(this, level))
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }
