@@ -25,9 +25,10 @@ class QuestionsLocalDataSource @Inject constructor(mDbHelper: QuestionsDbHelper)
             if (cursor.count > 0) {
                 cursor.moveToFirst()
                 do {
+                    val id = cursor.getInt(cursor.getColumnIndex(QuestionsEntry.COLUMN_NAME_ID))
                     val text = cursor.getString(cursor.getColumnIndex(QuestionsEntry.COLUMN_NAME_TEXT))
                     val lvl = cursor.getInt(cursor.getColumnIndex(QuestionsEntry.COLUMN_NAME_LEVEL))
-                    questions.add(Question(text, lvl))
+                    questions.add(Question(id, text, lvl))
                 } while (cursor.moveToNext())
             }
             cursor.close()

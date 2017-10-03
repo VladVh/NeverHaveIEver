@@ -14,11 +14,14 @@ class QuestionPresenter @Inject constructor(view: QuestionContract.View, reposit
 
     override fun getQuestions(level: Int) {
         mQuestions = mQuestionsRepository.getQuestions(level)
-        mQuestionView.showNextQuestion(getRandomQuestion())
     }
 
     override fun getNextQuestion() {
         mQuestionView.showNextQuestion(getRandomQuestion())
+    }
+
+    override fun showQuestion(id: Int) {
+        mQuestionView.showNextQuestion(mQuestions.single { it -> it.id == id })
     }
 
     private fun getRandomQuestion(): Question {
@@ -26,5 +29,4 @@ class QuestionPresenter @Inject constructor(view: QuestionContract.View, reposit
         var index = rand.nextInt(mQuestions.size)
         return mQuestions.get(index)
     }
-
 }

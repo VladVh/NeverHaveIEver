@@ -11,10 +11,11 @@ class QuestionsFakeDataSource @Inject constructor() : QuestionsDataSource {
     val adultsQuestions = arrayOf("adults 1", "adults 2", "adults 3", "adults 4", "adults 5")
 
     override fun getQuestions(level: Int): Array<Question> {
+        var counter = 0
         when(level) {
-            1 -> return kidsQuestions.map { it -> Question(it, 1) }.toTypedArray()
-            2 -> return normalQuestions.map { it -> Question(it, 2) }.toTypedArray()
-            3 -> return adultsQuestions.map { it -> Question(it, 3) }.toTypedArray()
+            1 -> return kidsQuestions.map { it -> Question(counter++, it, 1) }.toTypedArray()
+            2 -> return normalQuestions.map { it -> Question(counter++, it, 2) }.toTypedArray()
+            3 -> return adultsQuestions.map { it -> Question(counter++, it, 3) }.toTypedArray()
             else -> return emptyArray()
         }
     }

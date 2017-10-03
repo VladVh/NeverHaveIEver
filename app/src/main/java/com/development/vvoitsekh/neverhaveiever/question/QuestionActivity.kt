@@ -24,6 +24,7 @@ import javax.inject.Inject
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.preference.PreferenceManager
 import android.support.v4.content.ContextCompat
 import com.development.vvoitsekh.neverhaveiever.BaseActivity
 
@@ -35,11 +36,11 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
     @BindView(R.id.questionSwitcher)
     lateinit var mQuestionSwitcher: TextSwitcher
 
-    @BindView(R.id.questionRelativeLayout)
-    lateinit var mQuestionLayout: RelativeLayout
+    lateinit var mCurrentQuestion: Question
 
     companion object {
         private val LEVEL = "level"
+        private val QUESTION = "question"
 
         fun newIntent(context: Context, level: Int): Intent {
             val intent = Intent(context, QuestionActivity::class.java)
@@ -59,8 +60,13 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
             val textView = TextView(this)
             val layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
             layoutParams.gravity = Gravity.CENTER
+            layoutParams.marginEnd = 24
+            layoutParams.marginStart = 24
             textView.layoutParams = layoutParams
-            textView.setTextColor(Color.BLACK)
+
+            val pref = PreferenceManager.getDefaultSharedPreferences(this)
+            val night_mode = pref.getBoolean("NeverIHaveEver.night_mode", false)
+            textView.setTextColor( if (night_mode) Color.WHITE else Color.BLACK);
             textView.textSize = 20.0F
             textView
         })
@@ -68,6 +74,11 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
         mQuestionSwitcher.outAnimation = AnimationUtils.loadAnimation(this, R.anim.push_up_out)
 
         mPresenter.getQuestions(intent.extras.getInt(LEVEL))
+        if (savedInstanceState != null) {
+            mPresenter.showQuestion(savedInstanceState.getInt(QUESTION))
+        } else {
+            mPresenter.getNextQuestion();
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -79,8 +90,15 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
         return super.onTouchEvent(event)
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.let {
+            outState.putInt(QUESTION, mCurrentQuestion.id)
+        }
+        super.onSaveInstanceState(outState)
+    }
+
     override fun showNextQuestion(question: Question) {
         mQuestionSwitcher.setText(question.text)
-
+        mCurrentQuestion = question;
     }
 }

@@ -12,5 +12,7 @@ interface QuestionContract {
         fun getQuestions(level: Int)
 
         fun getNextQuestion()
+
+        fun showQuestion(id: Int)
     }
 }
