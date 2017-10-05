@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Never Have I Ever</string>
+    <string name="app_name">Я никогда не</string>
     <string name="mainSettings">Настройки</string>
     <string name="main_adult">Взрослые</string>
     <string name="main_kids">Дети</string>
