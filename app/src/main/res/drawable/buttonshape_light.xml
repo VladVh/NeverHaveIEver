@@ -4,9 +4,11 @@
         android:radius="14dp"
         />
     <gradient
-        android:angle="45"
-        android:startColor="#E0E872"
-        android:endColor="#4551FF"
+        android:angle="270"
+        android:centerX="31%"
+        android:centerColor="#FFE6B5"
+        android:startColor="#E8B34A"
+        android:endColor="#DEC085"
         android:type="linear"
         />
     <padding
@@ -20,7 +22,19 @@
         android:height="50dp"
         />
     <stroke
-        android:width="3dp"
+        android:width="0dp"
         android:color="#878787"
         />
 </shape>
+    <!--<android:startColor="#E0E872"-->
+    <!--<android:endColor="#4551FF"-->
+
+    <!--android:startColor="#E5E884"-->
+    <!--android:endColor="#9C6411"-->
+
+<!--<gradient-->
+<!--android:angle="270"-->
+<!--android:startColor="#AEE0E8"-->
+<!--android:endColor="#DEA249"-->
+<!--android:type="linear"-->
+    <!--/>-->

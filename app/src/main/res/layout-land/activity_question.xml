@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context="com.development.vvoitsekh.neverhaveiever.question.QuestionActivity">
 
+    <TextView
+        android:id="@+id/questionAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textSize="32sp"/>
+
     <Button
         android:id="@+id/questionNextButton"
         android:layout_width="wrap_content"
@@ -21,9 +34,9 @@
         android:id="@+id/questionSwitcher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
     </TextSwitcher>
 

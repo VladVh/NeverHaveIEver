@@ -1,9 +1,11 @@
 package com.development.vvoitsekh.neverhaveiever.main
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.development.vvoitsekh.neverhaveiever.BaseActivity
@@ -17,6 +19,9 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     @Inject
     lateinit var mPresenter: MainPresenter
+
+    @BindView(R.id.mainAppName)
+    lateinit var mAppName: TextView
 
     @BindView(R.id.mainKidsButton)
     lateinit var mKidsButton: Button
@@ -35,7 +40,11 @@ class MainActivity : BaseActivity(), MainContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ButterKnife.bind(this);
+        ButterKnife.bind(this)
+
+        val typeface = Typeface.createFromAsset(assets, "fonts/Veles-Regular.0.9.2.otf")
+        mAppName.typeface = typeface
+
         mKidsButton.setOnClickListener { mPresenter.startKidsGame() }
         mNormalButton.setOnClickListener { mPresenter.startNormalGame() }
         mAdultButton.setOnClickListener { mPresenter.startAdultsGame() }
