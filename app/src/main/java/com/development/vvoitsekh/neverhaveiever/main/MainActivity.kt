@@ -2,10 +2,8 @@ package com.development.vvoitsekh.neverhaveiever.main
 
 import android.content.Intent
 import android.graphics.Typeface
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.development.vvoitsekh.neverhaveiever.BaseActivity
@@ -19,9 +17,6 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     @Inject
     lateinit var mPresenter: MainPresenter
-
-    @BindView(R.id.mainAppName)
-    lateinit var mAppName: TextView
 
     @BindView(R.id.mainKidsButton)
     lateinit var mKidsButton: Button

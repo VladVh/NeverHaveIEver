@@ -9,7 +9,6 @@ import android.preference.PreferenceManager
 import android.view.GestureDetector
 import android.view.Gravity
 import android.view.MotionEvent
-import android.view.ViewConfiguration
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.FrameLayout
@@ -55,7 +54,10 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
         setContentView(R.layout.activity_question)
 
         ButterKnife.bind(this)
-        val typeface = Typeface.createFromAsset(assets, "fonts/Pangolin-Regular.ttf")
+
+        val typeface = Typeface.createFromAsset(assets, "fonts/Veles-Regular.0.9.2.otf")
+        mAppName.typeface = typeface
+        //val typeface = Typeface.createFromAsset(assets, "fonts/Pangolin-Regular.ttf")
 
         mQuestionSwitcher.setFactory({
             val textView = TextView(this)
@@ -69,7 +71,7 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
             val nightMode = pref.getBoolean("NeverIHaveEver.night_mode", false)
             textView.setTextColor(if (nightMode) Color.WHITE else Color.BLACK)
             textView.textSize = 20.0F
-            textView.typeface = typeface
+            // textView.typeface = typeface
 
             textView
         })
