@@ -8,6 +8,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="ButtonLight" parent="@style/Widget.AppCompat.Button">
@@ -28,6 +30,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="ButtonDark" parent="@style/Widget.AppCompat.Button">

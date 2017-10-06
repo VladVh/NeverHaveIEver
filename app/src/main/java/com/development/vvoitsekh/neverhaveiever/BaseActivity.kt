@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import butterknife.BindView
+import com.development.vvoitsekh.neverhaveiever.util.LocaleHelper
 
 
 open class BaseActivity : AppCompatActivity() {

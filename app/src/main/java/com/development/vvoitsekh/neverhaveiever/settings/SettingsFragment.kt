@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.preference.ListPreference
 import android.preference.Preference
 import android.preference.PreferenceFragment
-import com.development.vvoitsekh.neverhaveiever.LocaleHelper
+import com.development.vvoitsekh.neverhaveiever.util.LocaleHelper
 import com.development.vvoitsekh.neverhaveiever.R
 
 class SettingsFragment: PreferenceFragment(), SharedPreferences.OnSharedPreferenceChangeListener {

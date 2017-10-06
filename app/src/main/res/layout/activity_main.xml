@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="@string/main_normal"
+        android:text="@string/main_teen"
         android:layout_below="@+id/mainKidsButton"
         android:layout_alignLeft="@+id/mainKidsButton"
         android:layout_alignStart="@+id/mainKidsButton"/>
