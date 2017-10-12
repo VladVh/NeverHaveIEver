@@ -10,14 +10,25 @@ class QuestionsLocalDataSource @Inject constructor(mDbHelper: QuestionsDbHelper)
 
     var mDbHelper: QuestionsDbHelper = mDbHelper
 
-    override fun getQuestions(level: Int): Array<Question> {
+    override fun getQuestions(modes: BooleanArray): Array<Question> {
         val db = mDbHelper.readableDatabase;
 
         val projection = arrayOf(QuestionsEntry.COLUMN_NAME_ID,
                 QuestionsEntry.COLUMN_NAME_TEXT,
                 QuestionsEntry.COLUMN_NAME_LEVEL)
-        val selection = QuestionsEntry.COLUMN_NAME_LEVEL + " = ? OR " + QuestionsEntry.COLUMN_NAME_LEVEL + " = ?"
-        val selectionArgs: Array<String> = arrayOf(level.toString(), (level - 1).toString())
+        var selection = "";
+        val selectionArgs = arrayOfNulls<String>(3)
+        for (i in modes.indices)
+        {
+            var mode = modes[i];
+            if (mode) {
+                selection += QuestionsEntry.COLUMN_NAME_LEVEL + " = ? OR "
+                selectionArgs[i] = (i + 1).toString();
+            }
+        }
+        selection = selection.substring(0, selection.length - 3);
+//        val selection = QuestionsEntry.COLUMN_NAME_LEVEL + " = ? OR " + QuestionsEntry.COLUMN_NAME_LEVEL + " = ?"
+//        val selectionArgs: Array<String> = arrayOf(level.toString(), (level - 1).toString())
         val cursor = db.query(QuestionsEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null)
 
         val questions = ArrayList<Question>()

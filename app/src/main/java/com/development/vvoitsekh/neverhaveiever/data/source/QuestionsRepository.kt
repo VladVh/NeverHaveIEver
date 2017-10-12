@@ -9,10 +9,11 @@ class QuestionsRepository @Inject constructor(localDataSource: QuestionsDataSour
     private val mQuestionsDataSource: QuestionsDataSource = localDataSource
 
     private var mCachedQuestions: Array<Question> = emptyArray()
+    private var mCachedModes: Array<Boolean> = emptyArray()
 
-    override fun getQuestions(level: Int): Array<Question> {
-        if (mCachedQuestions.size == 0 || mCachedQuestions[0].level != level) {
-            mCachedQuestions = mQuestionsDataSource.getQuestions(level);
+    override fun getQuestions(modes: BooleanArray): Array<Question> {
+        if (mCachedQuestions.size == 0 || mCachedModes.contentEquals(modes.toTypedArray()) ) {
+            mCachedQuestions = mQuestionsDataSource.getQuestions(modes);
         }
         return mCachedQuestions
     }

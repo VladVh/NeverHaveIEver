@@ -12,8 +12,8 @@ class QuestionPresenter @Inject constructor(view: QuestionContract.View, reposit
 
     private var mQuestions: Array<Question> = emptyArray()
 
-    override fun getQuestions(level: Int) {
-        mQuestions = mQuestionsRepository.getQuestions(level)
+    override fun getQuestions(modes: BooleanArray) {
+        mQuestions = mQuestionsRepository.getQuestions(modes)
     }
 
     override fun getNextQuestion() {

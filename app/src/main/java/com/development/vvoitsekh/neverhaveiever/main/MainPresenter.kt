@@ -7,15 +7,21 @@ class MainPresenter @Inject constructor(view: MainContract.View) : MainContract.
 
     private var mMainView: MainContract.View = view
 
-    override fun startKidsGame() {
-        mMainView.showGame(1)
+    private var selectedModes = booleanArrayOf(false, false, false)
+
+    override fun applyKidsMode() {
+        selectedModes[0] = !selectedModes[0]
     }
 
-    override fun startNormalGame() {
-        mMainView.showGame(2)
+    override fun applyTeenagerMode() {
+        selectedModes[1] = !selectedModes[1]
     }
 
-    override fun startAdultsGame() {
-        mMainView.showGame(3)
+    override fun applyAdultMode() {
+        selectedModes[2] = !selectedModes[2]
+    }
+
+    override fun startGame() {
+        mMainView.showGame(selectedModes)
     }
 }

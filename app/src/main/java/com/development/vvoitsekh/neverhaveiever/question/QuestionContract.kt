@@ -9,7 +9,7 @@ interface QuestionContract {
     }
 
     interface Presenter {
-        fun getQuestions(level: Int)
+        fun getQuestions(modes: BooleanArray)
 
         fun getNextQuestion()
 

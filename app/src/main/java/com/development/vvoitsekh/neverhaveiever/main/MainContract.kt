@@ -6,13 +6,15 @@ import com.development.vvoitsekh.neverhaveiever.BaseView
 
 public interface MainContract {
     interface View : BaseView<Presenter> {
-        fun showGame(level: Int)
+        fun showGame(modes: BooleanArray)
     }
     interface Presenter : BasePresenter {
-        fun startKidsGame()
+        fun applyKidsMode()
 
-        fun startNormalGame()
+        fun applyTeenagerMode()
 
-        fun startAdultsGame()
+        fun applyAdultMode()
+
+        fun startGame()
     }
 }

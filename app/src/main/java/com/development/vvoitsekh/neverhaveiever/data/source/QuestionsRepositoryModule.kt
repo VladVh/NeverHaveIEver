@@ -10,6 +10,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
+@Singleton
 class QuestionsRepositoryModule {
 
     @Provides

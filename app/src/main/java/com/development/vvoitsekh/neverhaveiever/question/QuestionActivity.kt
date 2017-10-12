@@ -41,9 +41,9 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
         private val LEVEL = "level"
         private val QUESTION = "question"
 
-        fun newIntent(context: Context, level: Int): Intent {
+        fun newIntent(context: Context, modes: BooleanArray): Intent {
             val intent = Intent(context, QuestionActivity::class.java)
-            intent.putExtra(LEVEL, level)
+            intent.putExtra(LEVEL, modes)
             return intent
         }
     }
@@ -83,7 +83,7 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
 
         mNextQuestionButton.setOnClickListener { mPresenter.getNextQuestion() }
 
-        mPresenter.getQuestions(intent.extras.getInt(LEVEL))
+        mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
         if (savedInstanceState != null) {
             mPresenter.showQuestion(savedInstanceState.getInt(QUESTION))
         } else {

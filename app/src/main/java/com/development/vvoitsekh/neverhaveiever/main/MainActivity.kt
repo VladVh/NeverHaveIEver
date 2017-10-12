@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ToggleButton
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.development.vvoitsekh.neverhaveiever.BaseActivity
@@ -19,7 +20,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     lateinit var mPresenter: MainPresenter
 
     @BindView(R.id.mainKidsButton)
-    lateinit var mKidsButton: Button
+    lateinit var mKidsButton: ToggleButton
 
     @BindView(R.id.mainNormalButton)
     lateinit var mNormalButton: Button
@@ -40,14 +41,20 @@ class MainActivity : BaseActivity(), MainContract.View {
         val typeface = Typeface.createFromAsset(assets, "fonts/Veles-Regular.0.9.2.otf")
         mAppName.typeface = typeface
 
-        mKidsButton.setOnClickListener { mPresenter.startKidsGame() }
-        mNormalButton.setOnClickListener { mPresenter.startNormalGame() }
-        mAdultButton.setOnClickListener { mPresenter.startAdultsGame() }
+        mKidsButton.setOnClickListener { mPresenter.applyKidsMode()
+            //mKidsButton.isSelected = !mKidsButton.isSelected
+        }
+        mNormalButton.setOnClickListener { mPresenter.applyTeenagerMode()
+            //mNormalButton.isSelected = !mNormalButton.isSelected
+        }
+        mAdultButton.setOnClickListener { mPresenter.applyAdultMode()
+            //mAdultButton.isSelected = !mAdultButton.isSelected
+        }
         mSettingsButton.setOnClickListener { startActivityForResult(Intent(this, SettingsActivity::class.java), 0) }
     }
 
-    override fun showGame(level: Int) {
-        startActivity(QuestionActivity.newIntent(this, level))
+    override fun showGame(modes: BooleanArray) {
+        startActivity(QuestionActivity.newIntent(this, modes))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
