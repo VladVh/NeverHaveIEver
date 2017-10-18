@@ -19,14 +19,17 @@ class MainActivity : BaseActivity(), MainContract.View {
     @Inject
     lateinit var mPresenter: MainPresenter
 
+    @BindView(R.id.mainPlayButton)
+    lateinit var mPlayButton: Button
+
     @BindView(R.id.mainKidsButton)
     lateinit var mKidsButton: ToggleButton
 
-    @BindView(R.id.mainNormalButton)
-    lateinit var mNormalButton: Button
+    @BindView(R.id.mainTeenagerButton)
+    lateinit var mTeenagerButton: ToggleButton
 
     @BindView(R.id.mainAdultButton)
-    lateinit var mAdultButton: Button
+    lateinit var mAdultButton: ToggleButton
 
     @BindView(R.id.mainSettingsButton)
     lateinit var mSettingsButton: Button
@@ -41,11 +44,13 @@ class MainActivity : BaseActivity(), MainContract.View {
         val typeface = Typeface.createFromAsset(assets, "fonts/Veles-Regular.0.9.2.otf")
         mAppName.typeface = typeface
 
+        mPlayButton.setOnClickListener { mPresenter.startGame() }
+
         mKidsButton.setOnClickListener { mPresenter.applyKidsMode()
             //mKidsButton.isSelected = !mKidsButton.isSelected
         }
-        mNormalButton.setOnClickListener { mPresenter.applyTeenagerMode()
-            //mNormalButton.isSelected = !mNormalButton.isSelected
+        mTeenagerButton.setOnClickListener { mPresenter.applyTeenagerMode()
+            //mTeenagerButton.isSelected = !mTeenagerButton.isSelected
         }
         mAdultButton.setOnClickListener { mPresenter.applyAdultMode()
             //mAdultButton.isSelected = !mAdultButton.isSelected

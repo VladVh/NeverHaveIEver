@@ -2,6 +2,7 @@
     <string name="app_name">Never I Have Ever</string>
 
     <!--Main-->
+    <string name="main_play">Play</string>
     <string name="main_kids">Kids</string>
     <string name="main_teen">Teenager</string>
     <string name="main_adult">Adults</string>

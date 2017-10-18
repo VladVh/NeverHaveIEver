@@ -8,7 +8,8 @@
     tools:context="com.development.vvoitsekh.neverhaveiever.main.MainActivity"
     android:weightSum="1">
 
-    <include layout="@layout/activity_base"/>
+    <include layout="@layout/activity_base"
+             android:id="@+id/include"/>
     <!--<TextView-->
         <!--android:id="@+id/mainAppName"-->
         <!--android:layout_width="wrap_content"-->
@@ -23,32 +24,34 @@
         <!--android:layout_alignParentStart="true"/>-->
 
     <ToggleButton
+        android:textOff="@string/main_kids"
+        android:textOn="@string/main_kids"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_kids"
+        android:id="@+id/mainKidsButton"
+        android:layout_above="@+id/mainTeenagerButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="220dp"
-        android:id="@+id/mainKidsButton"/>
+        android:layout_marginBottom="15dp"/>
 
-    <Button
-        android:id="@+id/mainNormalButton"
+    <ToggleButton
+        android:id="@+id/mainTeenagerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/main_teen"
-        android:layout_below="@+id/mainKidsButton"
-        android:layout_alignLeft="@+id/mainKidsButton"
+        android:textOff="@string/main_teen"
+        android:textOn="@string/main_teen"
+        android:layout_marginBottom="15dp"
+        android:layout_above="@+id/mainAdultButton"
         android:layout_alignStart="@+id/mainKidsButton"/>
 
-    <Button
+    <ToggleButton
         android:id="@+id/mainAdultButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/main_adult"
-        android:layout_below="@+id/mainNormalButton"
-        android:layout_alignLeft="@+id/mainNormalButton"
-        android:layout_alignStart="@+id/mainNormalButton"/>
+        android:textOff="@string/main_adult"
+        android:textOn="@string/main_adult"
+        android:layout_above="@+id/mainSettingsButton"
+        android:layout_alignStart="@+id/mainTeenagerButton"
+        android:layout_marginBottom="45dp"/>
 
     <Button
         android:id="@+id/mainSettingsButton"
@@ -61,5 +64,14 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/mainSettings"/>
+
+    <Button
+        android:id="@+id/mainPlayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_play"
+        android:layout_below="@+id/include"
+        android:layout_alignStart="@+id/mainKidsButton"
+        android:layout_marginTop="78dp"/>
 
 </RelativeLayout>

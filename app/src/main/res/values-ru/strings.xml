@@ -9,4 +9,5 @@
     <string name="pref_night_mode">вкл</string>
     <string name="pref_rate">оценить</string>
     <string name="question_next">следующий</string>
+    <string name="main_play">Играть</string>
 </resources>
