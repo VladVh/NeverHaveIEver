@@ -9,6 +9,7 @@ import android.preference.PreferenceManager
 import android.view.GestureDetector
 import android.view.Gravity
 import android.view.MotionEvent
+import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.FrameLayout
@@ -63,14 +64,16 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
             val textView = TextView(this)
             val layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
             layoutParams.gravity = Gravity.CENTER
-            layoutParams.marginEnd = 24
-            layoutParams.marginStart = 24
+            layoutParams.marginEnd = 40
+            layoutParams.marginStart = 40
             textView.layoutParams = layoutParams
 
             val pref = PreferenceManager.getDefaultSharedPreferences(this)
             val nightMode = pref.getBoolean("NeverIHaveEver.night_mode", false)
             textView.setTextColor(if (nightMode) Color.WHITE else Color.BLACK)
-            textView.textSize = 20.0F
+            textView.textSize = 22.0F
+            textView.setLineSpacing(10F, 1.3F)
+            textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
             // textView.typeface = typeface
 
             textView

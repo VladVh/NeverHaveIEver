@@ -11,32 +11,34 @@ class QuestionsLocalDataSource @Inject constructor(mDbHelper: QuestionsDbHelper)
     var mDbHelper: QuestionsDbHelper = mDbHelper
 
     override fun getQuestions(modes: BooleanArray): Array<Question> {
+        //mDbHelper.createDataBase()
         val db = mDbHelper.readableDatabase;
 
-        val projection = arrayOf(QuestionsEntry.COLUMN_NAME_ID,
+        val projection = arrayOf(
+                "rowid",
                 QuestionsEntry.COLUMN_NAME_TEXT,
                 QuestionsEntry.COLUMN_NAME_LEVEL)
         var selection = "";
-        val selectionArgs = arrayOfNulls<String>(3)
+        val selectionArgs = arrayListOf<String>()
         for (i in modes.indices)
         {
             var mode = modes[i];
             if (mode) {
                 selection += QuestionsEntry.COLUMN_NAME_LEVEL + " = ? OR "
-                selectionArgs[i] = (i + 1).toString();
+                selectionArgs.add((i + 1).toString())
             }
         }
         selection = selection.substring(0, selection.length - 3);
-//        val selection = QuestionsEntry.COLUMN_NAME_LEVEL + " = ? OR " + QuestionsEntry.COLUMN_NAME_LEVEL + " = ?"
-//        val selectionArgs: Array<String> = arrayOf(level.toString(), (level - 1).toString())
-        val cursor = db.query(QuestionsEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null)
-
+        //val selection = QuestionsEntry.COLUMN_NAME_LEVEL + " = ? OR " + QuestionsEntry.COLUMN_NAME_LEVEL + " = ?"
+        //val selectionArgs: Array<String> = arrayOf(level.toString(), (level - 1).toString())
+        val cursor = db.query(QuestionsEntry.TABLE_NAME, projection, selection, selectionArgs.toTypedArray(), null, null, null)
+        //val cursor = db.rawQuery("SELECT * FROM questions_en", null)
         val questions = ArrayList<Question>()
+        cursor.moveToFirst()
         cursor.let {
             if (cursor.count > 0) {
-                cursor.moveToFirst()
                 do {
-                    val id = cursor.getInt(cursor.getColumnIndex(QuestionsEntry.COLUMN_NAME_ID))
+                    val id = cursor.getInt(cursor.getColumnIndex("rowid"))
                     val text = cursor.getString(cursor.getColumnIndex(QuestionsEntry.COLUMN_NAME_TEXT))
                     val lvl = cursor.getInt(cursor.getColumnIndex(QuestionsEntry.COLUMN_NAME_LEVEL))
                     questions.add(Question(id, text, lvl))

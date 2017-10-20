@@ -15,5 +15,5 @@ class QuestionsRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideQuestionsRepository(localDataSource: QuestionsFakeDataSource) = QuestionsRepository(localDataSource)
+    fun provideQuestionsRepository(localDataSource: QuestionsLocalDataSource) = QuestionsRepository(localDataSource)
 }
