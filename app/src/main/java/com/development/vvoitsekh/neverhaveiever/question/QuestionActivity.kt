@@ -58,7 +58,6 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
 
         val typeface = Typeface.createFromAsset(assets, "fonts/Veles-Regular.0.9.2.otf")
         mAppName.typeface = typeface
-        //val typeface = Typeface.createFromAsset(assets, "fonts/Pangolin-Regular.ttf")
 
         mQuestionSwitcher.setFactory({
             val textView = TextView(this)
@@ -72,7 +71,7 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
             val nightMode = pref.getBoolean("NeverIHaveEver.night_mode", false)
             textView.setTextColor(if (nightMode) Color.WHITE else Color.BLACK)
             textView.textSize = 22.0F
-            textView.setLineSpacing(10F, 1.3F)
+            textView.setLineSpacing(10F, 1.1F)
             textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
             // textView.typeface = typeface
 
@@ -82,7 +81,6 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
         mQuestionSwitcher.outAnimation = AnimationUtils.loadAnimation(this, R.anim.push_up_out)
 
         mGestureDetector = GestureDetector(this, SwipeGestureDetector())
-
 
         mNextQuestionButton.setOnClickListener { mPresenter.getNextQuestion() }
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Я ніколи не</string>
+    <string name="app_name">Я ніколи не...</string>
     <string name="mainSettings">Налаштування</string>
-    <string name="main_adult">Для дорослих</string>
-    <string name="main_kids">Для дітей</string>
-    <string name="main_teen">Для підлітків</string>
+    <string name="main_adult">Дорослі</string>
+    <string name="main_kids">Діти</string>
+    <string name="main_teen">Підлітки</string>
     <string name="question_next">Наступне</string>
     <string name="pref_lang">Мова</string>
     <string name="pref_night_mode">Ввімкнути нічний режим</string>

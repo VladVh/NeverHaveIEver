@@ -28,40 +28,43 @@
         android:layout_centerHorizontal="true"
         android:text="@string/main_play"
         android:layout_below="@+id/include"
-        android:layout_marginTop="35dp"/>
+        android:layout_marginTop="15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:layout_above="@+id/mainSettingsButton"
         android:layout_alignParentStart="true">
 
-        <Button
+        <ToggleButton
             android:id="@+id/mainKidsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:text="@string/main_kids"/>
+            android:textOff="@string/main_kids"
+            android:textOn="@string/main_kids"/>
 
-        <Button
+        <ToggleButton
             android:id="@+id/mainTeenagerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:text="@string/main_teen"/>
+            android:textOff="@string/main_teen"
+            android:textOn="@string/main_teen"/>
 
-        <Button
+        <ToggleButton
             android:id="@+id/mainAdultButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:text="@string/main_adult"/>
+            android:textOff="@string/main_adult"
+            android:textOn="@string/main_adult"/>
     </LinearLayout>
 
 
