@@ -13,7 +13,7 @@
         android:showText="false"
         />
     <Preference
-        android:key="rate"
+        android:key="NeverIHaveEver.rate"
         android:title="@string/pref_rate"
         />
 </PreferenceScreen>

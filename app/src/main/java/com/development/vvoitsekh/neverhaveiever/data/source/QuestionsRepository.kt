@@ -13,7 +13,7 @@ class QuestionsRepository @Inject constructor(localDataSource: QuestionsDataSour
 
     override fun getQuestions(modes: BooleanArray): Array<Question> {
         if (mCachedQuestions.size == 0 || !mCachedModes.contentEquals(modes.toTypedArray()) ) {
-            mCachedQuestions = mQuestionsDataSource.getQuestions(modes);
+            mCachedQuestions = mQuestionsDataSource.getQuestions(modes)
             mCachedModes = modes.copyOf().toTypedArray()
         }
         return mCachedQuestions

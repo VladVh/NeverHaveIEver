@@ -15,8 +15,12 @@ class SettingsFragment: PreferenceFragment(), SharedPreferences.OnSharedPreferen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.preferences)
+        val langPref = findPreference("NeverIHaveEver.language") as ListPreference
+        //if (langPref.value == null)
+            //langPref.setValueIndex(if (LocaleHelper.getLanguage(activity)!!.contains("EN")) 0 else 1)
 
-        val rateBtn = findPreference("rate")
+        langPref.setValueIndex(langPref.findIndexOfValue(langPref.value))
+        val rateBtn = findPreference("NeverIHaveEver.rate")
         rateBtn.setOnPreferenceClickListener {
             //startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + activity.packageName)))
             true

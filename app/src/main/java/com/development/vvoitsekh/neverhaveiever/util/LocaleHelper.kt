@@ -12,9 +12,10 @@ import java.util.Locale;
 object LocaleHelper {
 
     private val SELECTED_LANGUAGE = "NeverIHaveEver.language"
+    private lateinit var mContext:Context
 
     fun onAttach(context: Context): Context {
-        val lang = getPersistedData(context, Locale.getDefault().getLanguage())
+        val lang = getPersistedData(context, Locale.getDefault().language)
         return setLocale(context, lang)
     }
 
@@ -24,7 +25,7 @@ object LocaleHelper {
     }
 
     fun getLanguage(context: Context): String? {
-        return getPersistedData(context, Locale.getDefault().getLanguage())
+        return getPersistedData(context, Locale.getDefault().language)
     }
 
     fun setLocale(context: Context, language: String?): Context {
@@ -51,10 +52,10 @@ object LocaleHelper {
 
     @TargetApi(Build.VERSION_CODES.N)
     private fun updateResources(context: Context, language: String?): Context {
-        val locale = Locale.forLanguageTag(language);
+        val locale = Locale.forLanguageTag(language)
         Locale.setDefault(locale)
 
-        val configuration = context.getResources().getConfiguration()
+        val configuration = context.resources.configuration
         configuration.setLocale(locale)
         configuration.setLayoutDirection(locale)
 
@@ -62,16 +63,19 @@ object LocaleHelper {
     }
 
     private fun updateResourcesLegacy(context: Context, language: String?): Context {
-        var context = context;
+        var context = context
         val config = context.resources.configuration
         val sysLocale: Locale?
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            sysLocale = getSystemLocale(config)
+        sysLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            getSystemLocale(config)
         } else {
-            sysLocale = getSystemLocaleLegacy(config)
+            getSystemLocaleLegacy(config)
         }
         if (!language.equals("") && sysLocale.language != language) {
-            val locale = Locale(language)
+            val locale:Locale = if(language.equals("en"))
+                Locale("en",language)
+            else
+                Locale("uk",language)
             Locale.setDefault(locale)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 setSystemLocale(config, locale)
@@ -84,7 +88,8 @@ object LocaleHelper {
                 context.resources.updateConfiguration(config, context.resources.displayMetrics)
             }
         }
-        return context;
+        mContext = context
+        return context
 //        val locale = Locale(language)
 //        Locale.setDefault(locale)
 //
@@ -103,7 +108,7 @@ object LocaleHelper {
     fun getSystemLocaleLegacy(config: Configuration): Locale = config.locale
 
     @TargetApi(Build.VERSION_CODES.N)
-    fun getSystemLocale(config: Configuration): Locale = config.locales.get(0)
+    fun getSystemLocale(config: Configuration): Locale = mContext.resources.configuration.locales.get(0)
 
     fun setSystemLocaleLegacy(config: Configuration, locale: Locale) {
         config.locale = locale

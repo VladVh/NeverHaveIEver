@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/background_light</item>
         <item name="android:textColor">@color/textColorDark</item>
-        <item name="android:buttonStyle">@style/ButtonLight</item>
+        <item name="buttonStyle">@style/ButtonLight</item>
         <item name="android:buttonStyleToggle">@style/ToggleButtonLight</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

@@ -21,16 +21,9 @@
         <!--android:text="@string/app_name"-->
         <!--android:textAlignment="center"-->
         <!--android:textSize="32sp"/>-->
-    <Button
-        android:id="@+id/mainPlayButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/main_play"
-        android:layout_below="@+id/include"
-        android:layout_marginTop="15dp"/>
 
     <LinearLayout
+        android:id="@+id/mainToggleButtonsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -67,6 +60,14 @@
             android:textOn="@string/main_adult"/>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/mainPlayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/main_play"
+        android:layout_below="@+id/include"
+        android:layout_marginTop="15dp"/>
 
     <Button
         android:id="@+id/mainSettingsButton"

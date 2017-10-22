@@ -2,6 +2,7 @@ package com.development.vvoitsekh.neverhaveiever.data.source.local
 
 import android.database.Cursor
 import android.os.Build
+import android.util.Log
 import com.development.vvoitsekh.neverhaveiever.data.Question
 import com.development.vvoitsekh.neverhaveiever.data.source.QuestionsDataSource
 import com.development.vvoitsekh.neverhaveiever.data.source.local.QuestionsPersistenceContract.QuestionsEntry
@@ -20,11 +21,11 @@ class QuestionsLocalDataSource @Inject constructor(var mDbHelper: QuestionsDbHel
     override fun getQuestions(modes: BooleanArray): Array<Question> {
         val db = mDbHelper.readableDatabase;
 
-        var selection = "";
+        var selection = ""
         val selectionArgs = arrayListOf<String>()
         for (i in modes.indices)
         {
-            val mode = modes[i];
+            val mode = modes[i]
             if (mode) {
                 selection += QuestionsEntry.COLUMN_NAME_LEVEL + " = ? OR "
                 selectionArgs.add((i + 1).toString())
@@ -32,17 +33,17 @@ class QuestionsLocalDataSource @Inject constructor(var mDbHelper: QuestionsDbHel
         }
         selection = selection.substring(0, selection.length - 3)
 
-        val locale:Locale
-        val cursor:Cursor
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            locale = LocaleHelper.getSystemLocale(mDbHelper.context.resources.configuration)
+        val locale:Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            LocaleHelper.getSystemLocale(mDbHelper.context.resources.configuration)
         } else {
-            locale = LocaleHelper.getSystemLocaleLegacy(mDbHelper.context.resources.configuration)
+            LocaleHelper.getSystemLocaleLegacy(mDbHelper.context.resources.configuration)
         }
-        if (locale.language.equals("ua"))
-            cursor = db.query(QuestionsEntry.TABLE_NAME_UA, projection, selection, selectionArgs.toTypedArray(), null, null, null)
+
+        Log.e("LOCALE", locale.toString())
+        val cursor:Cursor = if (locale.language.contains("UA"))
+            db.query(QuestionsEntry.TABLE_NAME_UA, projection, selection, selectionArgs.toTypedArray(), null, null, null)
         else
-            cursor = db.query(QuestionsEntry.TABLE_NAME_EN, projection, selection, selectionArgs.toTypedArray(), null, null, null)
+            db.query(QuestionsEntry.TABLE_NAME_EN, projection, selection, selectionArgs.toTypedArray(), null, null, null)
 
         val questions = ArrayList<Question>()
         cursor.moveToFirst()
