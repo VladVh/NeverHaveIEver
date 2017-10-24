@@ -87,8 +87,6 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
         mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
         if (savedInstanceState != null) {
             mPresenter.showQuestion(savedInstanceState.getInt(QUESTION))
-        } else {
-            mPresenter.getNextQuestion()
         }
     }
 

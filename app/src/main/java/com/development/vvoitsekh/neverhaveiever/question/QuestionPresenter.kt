@@ -1,8 +1,13 @@
 package com.development.vvoitsekh.neverhaveiever.question
 
+import android.util.Log
 import com.development.vvoitsekh.neverhaveiever.data.Question
 import com.development.vvoitsekh.neverhaveiever.data.source.QuestionsRepository
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import java.util.*
+import java.util.concurrent.Callable
 import javax.inject.Inject
 
 
@@ -13,7 +18,19 @@ class QuestionPresenter @Inject constructor(view: QuestionContract.View, reposit
     private var mQuestions: Array<Question> = emptyArray()
 
     override fun getQuestions(modes: BooleanArray) {
-        mQuestions = mQuestionsRepository.getQuestions(modes)
+        val observable = Observable.fromCallable(object : Callable<Array<Question>> {
+            override fun call(): Array<Question> {
+                return mQuestionsRepository.getQuestions(modes)
+            }
+        })
+        observable.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->
+                            mQuestions = result.copyOf()
+                            getNextQuestion() },
+                        { error -> Log.e("DB error", "Error obtaining data from the database")}
+                )
     }
 
     override fun getNextQuestion() {

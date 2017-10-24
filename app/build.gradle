@@ -43,6 +43,9 @@ dependencies {
 
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
 
+    compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:25.3.1'

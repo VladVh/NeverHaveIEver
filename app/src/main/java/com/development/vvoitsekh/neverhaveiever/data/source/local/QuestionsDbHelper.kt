@@ -10,7 +10,7 @@ class QuestionsDbHelper @Inject constructor(context: Context) : SQLiteAssetHelpe
     val context = context
 
     companion object {
-        val DATABASE_NAME = "QuestionsDb.db"
+        val DATABASE_NAME = "questionsDb.db"
         val DATABASE_VERSION = 1
     }
 
