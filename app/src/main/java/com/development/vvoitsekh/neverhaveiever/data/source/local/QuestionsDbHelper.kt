@@ -6,8 +6,13 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 import javax.inject.Inject
 
 
-class QuestionsDbHelper @Inject constructor(context: Context) : SQLiteAssetHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
-    val context = context
+class QuestionsDbHelper : SQLiteAssetHelper {
+    @Inject constructor(context: Context) : super(context, DATABASE_NAME, null, DATABASE_VERSION) {
+        this.context = context
+    }
+
+    val context:Context
+
 
     companion object {
         val DATABASE_NAME = "questionsDb.db"

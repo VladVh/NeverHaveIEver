@@ -19,7 +19,7 @@ class QuestionsLocalDataSource @Inject constructor(var mDbHelper: QuestionsDbHel
             QuestionsEntry.COLUMN_NAME_LEVEL)
 
     override fun getQuestions(modes: BooleanArray): Array<Question> {
-        val db = mDbHelper.readableDatabase;
+        val db = mDbHelper.readableDatabase
 
         var selection = ""
         val selectionArgs = arrayListOf<String>()
@@ -40,7 +40,7 @@ class QuestionsLocalDataSource @Inject constructor(var mDbHelper: QuestionsDbHel
         }
 
         Log.e("LOCALE", locale.toString())
-        val cursor:Cursor = if (locale.language.contains("UA"))
+        val cursor:Cursor = if (locale.country.equals("ua", true))
             db.query(QuestionsEntry.TABLE_NAME_UA, projection, selection, selectionArgs.toTypedArray(), null, null, null)
         else
             db.query(QuestionsEntry.TABLE_NAME_EN, projection, selection, selectionArgs.toTypedArray(), null, null, null)

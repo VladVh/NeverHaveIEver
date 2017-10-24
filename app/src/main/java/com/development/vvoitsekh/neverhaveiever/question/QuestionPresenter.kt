@@ -29,7 +29,7 @@ class QuestionPresenter @Inject constructor(view: QuestionContract.View, reposit
                         { result ->
                             mQuestions = result.copyOf()
                             getNextQuestion() },
-                        { error -> Log.e("DB error", "Error obtaining data from the database")}
+                        { error -> Log.e("Database error", error.message)}
                 )
     }
 
