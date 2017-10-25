@@ -58,8 +58,8 @@ object LocaleHelper {
         val configuration = context.resources.configuration
         configuration.setLocale(locale)
         configuration.setLayoutDirection(locale)
-
-        return context.createConfigurationContext(configuration)
+        mContext = context.createConfigurationContext(configuration)
+        return mContext
     }
 
     private fun updateResourcesLegacy(context: Context, language: String?): Context {
@@ -105,10 +105,10 @@ object LocaleHelper {
 //        return context
     }
 
-    fun getSystemLocaleLegacy(config: Configuration): Locale = config.locale
+    fun getSystemLocaleLegacy(config: Configuration): Locale = mContext.resources.configuration.locale
 
     @TargetApi(Build.VERSION_CODES.N)
-    fun getSystemLocale(config: Configuration): Locale = mContext.resources.configuration.locales.get(0)
+    fun getSystemLocale(config: Configuration): Locale = mContext.resources.configuration.locale
 
     fun setSystemLocaleLegacy(config: Configuration, locale: Locale) {
         config.locale = locale
