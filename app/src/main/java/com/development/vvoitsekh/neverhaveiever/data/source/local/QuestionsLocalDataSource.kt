@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class QuestionsLocalDataSource @Inject constructor(var mDbHelper: QuestionsDbHelper): QuestionsDataSource {
 
-    val projection = arrayOf(
+    private val projection = arrayOf(
             QuestionsEntry.COLUMN_NAME_ROWID,
             QuestionsEntry.COLUMN_NAME_TEXT,
             QuestionsEntry.COLUMN_NAME_LEVEL)
@@ -32,15 +32,9 @@ class QuestionsLocalDataSource @Inject constructor(var mDbHelper: QuestionsDbHel
             }
         }
         selection = selection.substring(0, selection.length - 3)
-
-        val locale:Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            LocaleHelper.getSystemLocale(mDbHelper.context.resources.configuration)
-        } else {
-            LocaleHelper.getSystemLocaleLegacy(mDbHelper.context.resources.configuration)
-        }
-
-        Log.e("LOCALE", locale.toString())
-        val cursor:Cursor = if (locale.country.equals("ua", true))
+        
+        val language = LocaleHelper.getLanguage(mDbHelper.context)
+        val cursor:Cursor = if (language.equals("ua"))
             db.query(QuestionsEntry.TABLE_NAME_UA, projection, selection, selectionArgs.toTypedArray(), null, null, null)
         else
             db.query(QuestionsEntry.TABLE_NAME_EN, projection, selection, selectionArgs.toTypedArray(), null, null, null)

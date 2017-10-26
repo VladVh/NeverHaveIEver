@@ -12,7 +12,6 @@ import java.util.Locale;
 object LocaleHelper {
 
     private val SELECTED_LANGUAGE = "NeverIHaveEver.language"
-    private lateinit var mContext:Context
 
     fun onAttach(context: Context): Context {
         val lang = getPersistedData(context, Locale.getDefault().language)
@@ -24,7 +23,7 @@ object LocaleHelper {
         return setLocale(context, lang)
     }
 
-    fun getLanguage(context: Context): String? {
+    fun getLanguage(context: Context): String {
         return getPersistedData(context, Locale.getDefault().language)
     }
 
@@ -37,7 +36,7 @@ object LocaleHelper {
 
     }
 
-    private fun getPersistedData(context: Context, defaultLanguage: String): String? {
+    private fun getPersistedData(context: Context, defaultLanguage: String): String {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         return preferences.getString(SELECTED_LANGUAGE, defaultLanguage)
     }
@@ -88,7 +87,6 @@ object LocaleHelper {
                 context.resources.updateConfiguration(config, context.resources.displayMetrics)
             }
         }
-        mContext = context
         return context
 //        val locale = Locale(language)
 //        Locale.setDefault(locale)
@@ -108,14 +106,12 @@ object LocaleHelper {
     fun getSystemLocaleLegacy(config: Configuration): Locale = config.locale
 
     @TargetApi(Build.VERSION_CODES.N)
-    fun getSystemLocale(config: Configuration): Locale = mContext.resources.configuration.locales.get(0)
+    fun getSystemLocale(config: Configuration):Locale = config.locales.get(0)
 
-    fun setSystemLocaleLegacy(config: Configuration, locale: Locale) {
+    private fun setSystemLocaleLegacy(config: Configuration, locale: Locale) {
         config.locale = locale
     }
 
     @TargetApi(Build.VERSION_CODES.N)
-    fun setSystemLocale(config: Configuration, locale: Locale) {
-        config.setLocale(locale)
-    }
+    private fun setSystemLocale(config: Configuration, locale: Locale) = config.setLocale(locale)
 }
