@@ -24,8 +24,8 @@
         <!--android:layout_alignParentStart="true"/>-->
 
     <ToggleButton
-        android:textOff="@string/main_kids"
-        android:textOn="@string/main_kids"
+        android:textOff="@string/main_light"
+        android:textOn="@string/main_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mainKidsButton"
@@ -37,8 +37,8 @@
         android:id="@+id/mainTeenagerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOff="@string/main_teen"
-        android:textOn="@string/main_teen"
+        android:textOff="@string/main_normal"
+        android:textOn="@string/main_normal"
         android:layout_marginBottom="15dp"
         android:layout_above="@+id/mainAdultButton"
         android:layout_alignStart="@+id/mainKidsButton"/>
@@ -47,8 +47,8 @@
         android:id="@+id/mainAdultButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOff="@string/main_adult"
-        android:textOn="@string/main_adult"
+        android:textOff="@string/main_extreme"
+        android:textOn="@string/main_extreme"
         android:layout_above="@+id/mainSettingsButton"
         android:layout_alignStart="@+id/mainTeenagerButton"
         android:layout_marginBottom="45dp"/>
