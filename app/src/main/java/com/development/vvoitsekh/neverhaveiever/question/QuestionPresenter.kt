@@ -38,7 +38,9 @@ class QuestionPresenter @Inject constructor(view: QuestionContract.View, reposit
     }
 
     override fun showQuestion(id: Int) {
-        mQuestionView.showNextQuestion(mQuestions.single { it -> it.id == id })
+//        while (mQuestions.isEmpty())
+//            Thread.sleep(100)
+//        mQuestionView.showNextQuestion(mQuestions.single { it -> it.id == id })
     }
 
     private fun getRandomQuestion(): Question {

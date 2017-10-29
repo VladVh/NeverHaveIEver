@@ -84,15 +84,15 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
 
         mNextQuestionButton.setOnClickListener { mPresenter.getNextQuestion() }
 
-        //mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
-        if (savedInstanceState != null) {
-            mPresenter.showQuestion(savedInstanceState.getInt(QUESTION))
-        }
+        mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
+//        if (savedInstanceState != null) {
+//            mPresenter.showQuestion(savedInstanceState.getInt(QUESTION))
+//        }
     }
 
     override fun onResume() {
         super.onResume()
-        mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
+        //mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {

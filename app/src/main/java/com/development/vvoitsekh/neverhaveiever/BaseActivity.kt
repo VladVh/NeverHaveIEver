@@ -1,5 +1,6 @@
 package com.development.vvoitsekh.neverhaveiever
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -13,7 +14,7 @@ import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 
 
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : Activity() {
 
     @BindView(R.id.baseAppName)
     lateinit var mAppName: TextView
@@ -23,10 +24,10 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val decorView = window.decorView
-        // Hide the status bar.
-        val uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN
-        decorView.systemUiVisibility = uiOptions
+//        val decorView = window.decorView
+//        // Hide the status bar.
+//        val uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN
+//        decorView.systemUiVisibility = uiOptions
 
 
         val pref = PreferenceManager.getDefaultSharedPreferences(this)

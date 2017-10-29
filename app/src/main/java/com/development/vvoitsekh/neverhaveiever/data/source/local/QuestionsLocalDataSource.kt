@@ -32,7 +32,7 @@ class QuestionsLocalDataSource @Inject constructor(var mDbHelper: QuestionsDbHel
             }
         }
         selection = selection.substring(0, selection.length - 3)
-        
+
         val language = LocaleHelper.getLanguage(mDbHelper.context)
         val cursor:Cursor = if (language.equals("ua"))
             db.query(QuestionsEntry.TABLE_NAME_UA, projection, selection, selectionArgs.toTypedArray(), null, null, null)
