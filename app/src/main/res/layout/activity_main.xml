@@ -7,56 +7,68 @@
     tools:context="com.development.vvoitsekh.neverhaveiever.main.MainActivity"
     android:weightSum="1">
 
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/mainToolbar"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/mainSettingsButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:padding="10dp"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:src="@drawable/ic_settings_black_36dp"/>-->
+
+    <!--</android.support.v7.widget.Toolbar>-->
+
     <include layout="@layout/activity_base"
-             android:id="@+id/include"/>
+             android:id="@+id/include"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+       />
 
     <ToggleButton
         android:textOff="@string/main_light"
         android:textOn="@string/main_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/mainKidsButton"
-        android:layout_above="@+id/mainTeenagerButton"
+        android:id="@+id/mainLightButton"
+        android:layout_above="@+id/mainNormalButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"/>
 
     <ToggleButton
-        android:id="@+id/mainTeenagerButton"
+        android:id="@+id/mainNormalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textOff="@string/main_normal"
         android:textOn="@string/main_normal"
         android:layout_marginBottom="15dp"
-        android:layout_above="@+id/mainAdultButton"
-        android:layout_alignStart="@+id/mainKidsButton"/>
+        android:layout_above="@+id/mainExtremeButton"
+        android:layout_alignStart="@+id/mainLightButton"/>
 
     <ToggleButton
-        android:id="@+id/mainAdultButton"
+        android:id="@+id/mainExtremeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textOff="@string/main_extreme"
         android:textOn="@string/main_extreme"
-        android:layout_above="@+id/mainSettingsButton"
-        android:layout_alignStart="@+id/mainTeenagerButton"
-        android:layout_marginBottom="45dp"/>
-
-    <Button
-        android:id="@+id/mainSettingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/mainSettings"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"/>
 
     <Button
         android:id="@+id/mainPlayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_play"
-        android:layout_above="@+id/mainKidsButton"
+        android:layout_above="@+id/mainLightButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="60dp"
+        android:gravity="center_vertical"
+        android:text="@string/main_play"
+        android:textAlignment="center"/>
 
 </RelativeLayout>

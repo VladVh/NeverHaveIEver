@@ -1,10 +1,11 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/background_light</item>
         <item name="android:buttonStyle">@style/ButtonLight</item>
         <item name="android:buttonStyleToggle">@style/ToggleButtonLight</item>
+        <item name="android:actionBarStyle">@style/ActionBarTheme</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -12,6 +13,11 @@
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="ActionBarTheme" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 
     <style name="ToggleButtonLight" parent="@android:style/Widget.Holo.Button.Toggle">
         <item name="android:background">@drawable/togglebutton_light_selector</item>

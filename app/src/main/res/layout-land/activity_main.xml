@@ -33,7 +33,7 @@
         android:layout_alignParentStart="true">
 
         <ToggleButton
-            android:id="@+id/mainKidsButton"
+            android:id="@+id/mainLightButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -42,7 +42,7 @@
             android:textOn="@string/main_light"/>
 
         <ToggleButton
-            android:id="@+id/mainTeenagerButton"
+            android:id="@+id/mainNormalButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -51,7 +51,7 @@
             android:textOn="@string/main_normal"/>
 
         <ToggleButton
-            android:id="@+id/mainAdultButton"
+            android:id="@+id/mainExtremeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"

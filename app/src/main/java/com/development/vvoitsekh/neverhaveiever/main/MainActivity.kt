@@ -3,7 +3,10 @@ package com.development.vvoitsekh.neverhaveiever.main
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
+import android.view.Menu
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ToggleButton
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -19,20 +22,23 @@ class MainActivity : BaseActivity(), MainContract.View {
     @Inject
     lateinit var mPresenter: MainPresenter
 
+//    @BindView(R.id.mainToolbar)
+//    lateinit var mToolbar: Toolbar
+
     @BindView(R.id.mainPlayButton)
     lateinit var mPlayButton: Button
 
-    @BindView(R.id.mainKidsButton)
-    lateinit var mKidsButton: ToggleButton
+    @BindView(R.id.mainLightButton)
+    lateinit var mLightButton: ToggleButton
 
-    @BindView(R.id.mainTeenagerButton)
-    lateinit var mTeenagerButton: ToggleButton
+    @BindView(R.id.mainNormalButton)
+    lateinit var mNormalButton: ToggleButton
 
-    @BindView(R.id.mainAdultButton)
-    lateinit var mAdultButton: ToggleButton
+    @BindView(R.id.mainExtremeButton)
+    lateinit var mExtremeButton: ToggleButton
 
-    @BindView(R.id.mainSettingsButton)
-    lateinit var mSettingsButton: Button
+//    @BindView(R.id.mainSettingsButton)
+//    lateinit var mSettingsButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -44,13 +50,14 @@ class MainActivity : BaseActivity(), MainContract.View {
         val typeface = Typeface.createFromAsset(assets, "fonts/Veles-Regular.0.9.2.otf")
         mAppName.typeface = typeface
 
+
         mPlayButton.setOnClickListener { mPresenter.startGame() }
 
-        mKidsButton.setOnClickListener { mPresenter.applyKidsMode() }
-        mTeenagerButton.setOnClickListener { mPresenter.applyTeenagerMode() }
-        mAdultButton.setOnClickListener { mPresenter.applyAdultMode() }
+        mLightButton.setOnClickListener { mPresenter.applyKidsMode() }
+        mNormalButton.setOnClickListener { mPresenter.applyTeenagerMode() }
+        mExtremeButton.setOnClickListener { mPresenter.applyAdultMode() }
 
-        mSettingsButton.setOnClickListener { startActivityForResult(Intent(this, SettingsActivity::class.java), 0) }
+        //mSettingsButton.setOnClickListener { startActivityForResult(Intent(this, SettingsActivity::class.java), 0) }
     }
 
     override fun showGame(modes: BooleanArray) {
@@ -61,5 +68,10 @@ class MainActivity : BaseActivity(), MainContract.View {
         super.onActivityResult(requestCode, resultCode, data)
         startActivity(Intent(this, MainActivity::class.java))
         finish()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

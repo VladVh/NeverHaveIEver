@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.view.View
+import android.view.WindowManager
 import android.widget.TextView
 import butterknife.BindView
 import com.development.vvoitsekh.neverhaveiever.util.LocaleHelper
@@ -28,5 +30,10 @@ open class BaseActivity : Activity() {
         val nightMode = pref.getBoolean("NeverIHaveEver.night_mode", false)
         setTheme(if (nightMode) R.style.AppThemeDark else R.style.AppTheme)
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onResume() {
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        super.onResume()
     }
 }
