@@ -18,11 +18,7 @@ class QuestionPresenter @Inject constructor(view: QuestionContract.View, reposit
     private var mQuestions: Array<Question> = emptyArray()
 
     override fun getQuestions(modes: BooleanArray) {
-        val observable = Observable.fromCallable(object : Callable<Array<Question>> {
-            override fun call(): Array<Question> {
-                return mQuestionsRepository.getQuestions(modes)
-            }
-        })
+        val observable = Observable.fromCallable { mQuestionsRepository.getQuestions(modes) }
         observable.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -46,6 +42,6 @@ class QuestionPresenter @Inject constructor(view: QuestionContract.View, reposit
     private fun getRandomQuestion(): Question {
         var rand = Random()
         var index = rand.nextInt(mQuestions.size)
-        return mQuestions.get(index)
+        return mQuestions[index]
     }
 }

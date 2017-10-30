@@ -4,12 +4,12 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import com.development.vvoitsekh.neverhaveiever.di.DaggerAppComponent
+import com.development.vvoitsekh.neverhaveiever.util.LocaleHelper
+import com.development.vvoitsekh.neverhaveiever.util.TypefaceUtil
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
-import com.development.vvoitsekh.neverhaveiever.util.LocaleHelper
-import com.development.vvoitsekh.neverhaveiever.util.TypefaceUtil
 
 
 class App : Application(), HasActivityInjector {
@@ -23,9 +23,8 @@ class App : Application(), HasActivityInjector {
                 .builder()
                 .application(this)
                 .build()
-               // .create()
                 .inject(this)
-        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/Veles-Regular.0.9.2.otf");
+        TypefaceUtil.overrideFont(applicationContext, "SERIF", "fonts/Veles-Regular.0.9.2.otf")
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = activityInjector

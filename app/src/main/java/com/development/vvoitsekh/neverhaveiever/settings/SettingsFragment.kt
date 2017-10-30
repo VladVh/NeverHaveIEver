@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.preference.ListPreference
 import android.preference.Preference
 import android.preference.PreferenceFragment
-import com.development.vvoitsekh.neverhaveiever.util.LocaleHelper
 import com.development.vvoitsekh.neverhaveiever.R
+import com.development.vvoitsekh.neverhaveiever.util.LocaleHelper
 
-class SettingsFragment: PreferenceFragment(), SharedPreferences.OnSharedPreferenceChangeListener {
-    val mNightPref = "NeverIHaveEver.night_mode"
-    val mLangPref = "NeverIHaveEver.language"
+class SettingsFragment : PreferenceFragment(), SharedPreferences.OnSharedPreferenceChangeListener {
+    private val mNightPref = "NeverIHaveEver.night_mode"
+    private val mLangPref = "NeverIHaveEver.language"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +35,8 @@ class SettingsFragment: PreferenceFragment(), SharedPreferences.OnSharedPreferen
         }
         if (key.equals(mNightPref)) {
             val modePref = findPreference(key)
-            val value = sharedPreferences?.getBoolean(key, false);
-            setPreferenceSummary(modePref, value!!);
+            val value = sharedPreferences?.getBoolean(key, false)
+            setPreferenceSummary(modePref, value!!)
             activity.recreate()
         }
     }

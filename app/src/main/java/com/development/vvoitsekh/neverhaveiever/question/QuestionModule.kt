@@ -1,6 +1,5 @@
 package com.development.vvoitsekh.neverhaveiever.question
 
-import com.development.vvoitsekh.neverhaveiever.data.source.QuestionsRepositoryModule
 import dagger.Binds
 import dagger.Module
 

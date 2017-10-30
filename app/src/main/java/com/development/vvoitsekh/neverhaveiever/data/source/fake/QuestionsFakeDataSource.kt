@@ -13,11 +13,11 @@ class QuestionsFakeDataSource @Inject constructor() : QuestionsDataSource {
     override fun getQuestions(modes: BooleanArray): Array<Question> {
         var counter = 0
         var level = 2
-        when(level) {
-            1 -> return kidsQuestions.map { it -> Question(counter++, it, 1) }.toTypedArray()
-            2 -> return normalQuestions.map { it -> Question(counter++, it, 2) }.toTypedArray()
-            3 -> return adultsQuestions.map { it -> Question(counter++, it, 3) }.toTypedArray()
-            else -> return emptyArray()
+        return when(level) {
+            1 -> kidsQuestions.map { it -> Question(counter++, it, 1) }.toTypedArray()
+            2 -> normalQuestions.map { it -> Question(counter++, it, 2) }.toTypedArray()
+            3 -> adultsQuestions.map { it -> Question(counter++, it, 3) }.toTypedArray()
+            else -> emptyArray()
         }
     }
 }

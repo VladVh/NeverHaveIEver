@@ -1,14 +1,10 @@
 package com.development.vvoitsekh.neverhaveiever.util
 
 import android.content.Context
-import java.lang.reflect.AccessibleObject.setAccessible
 import android.graphics.Typeface
 import android.util.Log
 
 
-/**
- * Created by v.voitsekh on 06.10.2017.
- */
 object TypefaceUtil {
 
     /**
@@ -20,7 +16,7 @@ object TypefaceUtil {
      */
     fun overrideFont(context: Context, defaultFontNameToOverride: String, customFontFileNameInAssets: String) {
         try {
-            val customFontTypeface = Typeface.createFromAsset(context.getAssets(), customFontFileNameInAssets)
+            val customFontTypeface = Typeface.createFromAsset(context.assets, customFontFileNameInAssets)
 
             val defaultFontTypefaceField = Typeface::class.java.getDeclaredField(defaultFontNameToOverride)
             defaultFontTypefaceField.isAccessible = true

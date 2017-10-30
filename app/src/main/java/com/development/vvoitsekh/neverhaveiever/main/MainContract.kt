@@ -4,7 +4,7 @@ import com.development.vvoitsekh.neverhaveiever.BasePresenter
 import com.development.vvoitsekh.neverhaveiever.BaseView
 
 
-public interface MainContract {
+interface MainContract {
     interface View : BaseView<Presenter> {
         fun showGame(modes: BooleanArray)
     }

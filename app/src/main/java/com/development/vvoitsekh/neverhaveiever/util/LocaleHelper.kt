@@ -1,12 +1,11 @@
 package com.development.vvoitsekh.neverhaveiever.util
 
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.os.Build;
-import android.preference.PreferenceManager;
-
-import java.util.Locale;
+import android.annotation.TargetApi
+import android.content.Context
+import android.content.res.Configuration
+import android.os.Build
+import android.preference.PreferenceManager
+import java.util.*
 
 
 object LocaleHelper {
@@ -63,36 +62,11 @@ object LocaleHelper {
 
     private fun updateResourcesLegacy(context: Context, language: String?): Context {
         var context = context
-//        val config = context.resources.configuration
-//        val sysLocale: Locale?
-//        sysLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            getSystemLocale(config)
-//        } else {
-//            getSystemLocaleLegacy(config)
-//        }
-//        //if (!language.equals("") ){//&& sysLocale.language != language) {
-//            val locale:Locale = if(language.equals("en"))
-//                Locale("en",language)
-//            else
-//                Locale("uk",language)
-//            Locale.setDefault(locale)
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                setSystemLocale(config, locale)
-//            } else {
-//                setSystemLocaleLegacy(config, locale)
-//            }
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-//                return context.createConfigurationContext(config)
-//            } else {
-//                context.resources.updateConfiguration(config, context.resources.displayMetrics)
-//                return context
-//            }
-       // }
 
-            val locale:Locale = if(language.equals("en"))
-                Locale("en",language)
-            else
-                Locale("uk",language)
+        val locale: Locale = if (language.equals("en"))
+            Locale("en", language)
+        else
+            Locale("uk", language)
         Locale.setDefault(locale)
 
         val resources = context.resources
@@ -110,7 +84,7 @@ object LocaleHelper {
     fun getSystemLocaleLegacy(config: Configuration): Locale = config.locale
 
     @TargetApi(Build.VERSION_CODES.N)
-    fun getSystemLocale(config: Configuration):Locale = config.locales.get(0)
+    fun getSystemLocale(config: Configuration): Locale = config.locales.get(0)
 
     private fun setSystemLocaleLegacy(config: Configuration, locale: Locale) {
         config.locale = locale

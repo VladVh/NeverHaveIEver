@@ -1,6 +1,4 @@
 package com.development.vvoitsekh.neverhaveiever
 
 
-interface BaseView<T> {
-
-}
+interface BaseView<T>

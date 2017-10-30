@@ -1,7 +1,6 @@
 package com.development.vvoitsekh.neverhaveiever.settings
 
 import android.os.Bundle
-import android.preference.PreferenceActivity
 import com.development.vvoitsekh.neverhaveiever.BaseActivity
 
 

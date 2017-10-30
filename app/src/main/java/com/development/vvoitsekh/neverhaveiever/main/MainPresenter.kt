@@ -22,7 +22,7 @@ class MainPresenter @Inject constructor(view: MainContract.View) : MainContract.
     }
 
     override fun startGame() {
-        if (selectedModes.any { it -> it == true })
+        if (selectedModes.any { it -> it })
             mMainView.showGame(selectedModes)
     }
 }

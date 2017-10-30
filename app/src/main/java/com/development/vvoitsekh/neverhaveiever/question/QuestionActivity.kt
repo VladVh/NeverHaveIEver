@@ -90,11 +90,6 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
 //        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        //mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
-    }
-
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         this.mGestureDetector.onTouchEvent(event)
         return super.onTouchEvent(event)

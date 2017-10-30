@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Я ніколи не...</string>
+    <string name="app_name">Я ніколи не…</string>
     <string name="mainSettings">Налаштування</string>
     <string name="question_next">Наступне</string>
     <string name="pref_lang">Мова</string>

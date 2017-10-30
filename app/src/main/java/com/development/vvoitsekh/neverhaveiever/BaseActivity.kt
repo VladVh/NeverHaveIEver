@@ -4,15 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.v7.app.AppCompatActivity
-import android.view.View
 import android.widget.TextView
 import butterknife.BindView
 import com.development.vvoitsekh.neverhaveiever.util.LocaleHelper
-import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
-
-
-
 
 open class BaseActivity : Activity() {
 

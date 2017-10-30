@@ -2,7 +2,6 @@ package com.development.vvoitsekh.neverhaveiever.data.source
 
 import com.development.vvoitsekh.neverhaveiever.data.Question
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class QuestionsRepository @Inject constructor(localDataSource: QuestionsDataSource): QuestionsDataSource {
 

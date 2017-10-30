@@ -46,15 +46,10 @@ class MainActivity : BaseActivity(), MainContract.View {
 
         mPlayButton.setOnClickListener { mPresenter.startGame() }
 
-        mKidsButton.setOnClickListener { mPresenter.applyKidsMode()
-            //mKidsButton.isSelected = !mKidsButton.isSelected
-        }
-        mTeenagerButton.setOnClickListener { mPresenter.applyTeenagerMode()
-            //mTeenagerButton.isSelected = !mTeenagerButton.isSelected
-        }
-        mAdultButton.setOnClickListener { mPresenter.applyAdultMode()
-            //mAdultButton.isSelected = !mAdultButton.isSelected
-        }
+        mKidsButton.setOnClickListener { mPresenter.applyKidsMode() }
+        mTeenagerButton.setOnClickListener { mPresenter.applyTeenagerMode() }
+        mAdultButton.setOnClickListener { mPresenter.applyAdultMode() }
+
         mSettingsButton.setOnClickListener { startActivityForResult(Intent(this, SettingsActivity::class.java), 0) }
     }
 
