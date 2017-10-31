@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.preference.ListPreference
 import android.preference.Preference
 import android.preference.PreferenceFragment
+import android.support.v4.app.NavUtils
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import com.development.vvoitsekh.neverhaveiever.R
 import com.development.vvoitsekh.neverhaveiever.util.LocaleHelper
 

@@ -3,6 +3,7 @@
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/background_light</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonLight</item>
         <item name="android:buttonStyle">@style/ButtonLight</item>
         <item name="android:buttonStyleToggle">@style/ToggleButtonLight</item>
         <item name="android:actionBarStyle">@style/ActionBarTheme</item>
@@ -12,10 +13,13 @@
         <item name="android:textColor">@color/textColorDark</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_back_black_36dp</item>
     </style>
 
-    <style name="ActionBarTheme" parent="@android:style/Widget.Holo.ActionBar">
+    <style name="ActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@android:color/transparent</item>
+        <item name="android:displayOptions">useLogo|showHome|homeAsUp</item>
+        <item name="android:logo">@drawable/logo</item>
     </style>
 
 
@@ -39,12 +43,20 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="AppThemeDark" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+    <style name="ImageButtonLight" parent="@android:style/Widget.Holo.ImageButton">
+        <item name="android:src">@drawable/ic_play_circle_light</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+
+    <style name="AppThemeDark" parent="@android:style/Theme.Holo.Light">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/background_dark</item>
         <item name="android:textColor">@color/textColorLight</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonDark</item>
         <item name="android:buttonStyle">@style/ButtonDark</item>
         <item name="android:buttonStyleToggle">@style/ToggleButtonDark</item>
+        <item name="android:actionBarStyle">@style/ActionBarTheme</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -70,5 +82,10 @@
         <item name="android:shadowDy">5</item>
         <item name="android:shadowRadius">15</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="ImageButtonDark" parent="@android:style/Widget.Holo.ImageButton">
+        <item name="android:src">@drawable/ic_play_circle_light</item>
+        <item name="android:background">@android:color/transparent</item>
     </style>
 </resources>

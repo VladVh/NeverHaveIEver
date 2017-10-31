@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ToggleButton
@@ -26,7 +27,7 @@ class MainActivity : BaseActivity(), MainContract.View {
 //    lateinit var mToolbar: Toolbar
 
     @BindView(R.id.mainPlayButton)
-    lateinit var mPlayButton: Button
+    lateinit var mPlayButton: ImageButton
 
     @BindView(R.id.mainLightButton)
     lateinit var mLightButton: ToggleButton
@@ -72,6 +73,18 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+        actionBar.setDisplayShowHomeEnabled(false)
+        actionBar.setDisplayHomeAsUpEnabled(false)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.mainMenuSettingsButton -> {
+                startActivityForResult(Intent(this, SettingsActivity::class.java), 0)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

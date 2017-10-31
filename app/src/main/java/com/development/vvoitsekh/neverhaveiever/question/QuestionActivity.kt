@@ -4,22 +4,20 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.view.GestureDetector
-import android.view.Gravity
-import android.view.MotionEvent
-import android.view.View
+import android.support.v4.app.NavUtils
+import android.view.*
 import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.TextSwitcher
-import android.widget.TextView
+import android.widget.*
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.development.vvoitsekh.neverhaveiever.BaseActivity
 import com.development.vvoitsekh.neverhaveiever.R
 import com.development.vvoitsekh.neverhaveiever.data.Question
+import com.development.vvoitsekh.neverhaveiever.main.MainActivity
+import com.development.vvoitsekh.neverhaveiever.settings.SettingsActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -35,7 +33,7 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
     lateinit var mNextQuestionButton: Button
 
     private lateinit var mCurrentQuestion: Question
-
+    private lateinit var mModes: BooleanArray
     private lateinit var mGestureDetector: GestureDetector
 
     companion object {
@@ -84,10 +82,37 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
 
         mNextQuestionButton.setOnClickListener { mPresenter.getNextQuestion() }
 
-        mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
-//        if (savedInstanceState != null) {
-//            mPresenter.showQuestion(savedInstanceState.getInt(QUESTION))
-//        }
+        if (savedInstanceState != null) {
+            //mPresenter.showQuestion(savedInstanceState.getInt(QUESTION))
+            mPresenter.getQuestions(savedInstanceState.getBooleanArray(LEVEL))
+        } else {
+            mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
+            mModes = intent.extras.getBooleanArray(LEVEL).copyOf()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        startActivity(newIntent(this, mModes))
+        finish()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_36dp)
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.mainMenuSettingsButton -> {
+                startActivityForResult(Intent(this, SettingsActivity::class.java), 0)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -98,6 +123,7 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
     override fun onSaveInstanceState(outState: Bundle?) {
         outState?.let {
             outState.putInt(QUESTION, mCurrentQuestion.id)
+            outState.putBooleanArray(LEVEL, mModes)
         }
         super.onSaveInstanceState(outState)
     }

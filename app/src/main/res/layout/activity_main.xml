@@ -14,6 +14,14 @@
         <!--android:layout_height="wrap_content">-->
 
         <!--<ImageButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="left"-->
+            <!--android:paddingStart="20dp"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:src="@drawable/ic_arrow_back_black_36dp"/>-->
+        <!---->
+        <!--<ImageButton-->
             <!--android:id="@+id/mainSettingsButton"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
@@ -58,15 +66,15 @@
         android:textOn="@string/main_extreme"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"/>
+        android:layout_marginBottom="50dp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/mainPlayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/mainLightButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="40dp"
         android:gravity="center_vertical"
         android:text="@string/main_play"
         android:textAlignment="center"/>
