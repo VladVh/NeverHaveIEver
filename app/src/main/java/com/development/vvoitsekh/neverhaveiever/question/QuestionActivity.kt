@@ -16,6 +16,10 @@ import com.development.vvoitsekh.neverhaveiever.R
 import com.development.vvoitsekh.neverhaveiever.data.Question
 import com.development.vvoitsekh.neverhaveiever.settings.SettingsActivity
 import com.development.vvoitsekh.neverhaveiever.util.PrefUtil
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.MobileAds
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -32,7 +36,10 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
 
     private lateinit var mCurrentQuestion: Question
     private lateinit var mModes: BooleanArray
+    private var mAdCounter = 0
     private lateinit var mGestureDetector: GestureDetector
+
+    private lateinit var mInterstitialAd: InterstitialAd
 
     companion object {
         private val LEVEL = "level"
@@ -51,6 +58,17 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
         setContentView(R.layout.activity_question)
 
         ButterKnife.bind(this)
+
+        MobileAds.initialize(this, "ca-app-pub-6434220602939969~9178893473")
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = "ca-app-pub-6434220602939969/1324454182"
+        mInterstitialAd.adListener = object: AdListener() {
+            override fun onAdFailedToLoad(errorCode: Int) {
+                when (errorCode) {
+                    AdRequest.ERROR_CODE_INTERNAL_ERROR -> mInterstitialAd.loadAd(AdRequest.Builder().build())
+                }
+            }
+        }
 
         val typeface = Typeface.createFromAsset(assets, "fonts/Veles-Regular.0.9.2.otf")
         mAppName.typeface = typeface
@@ -78,7 +96,18 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
 
         mGestureDetector = GestureDetector(this, SwipeGestureDetector())
 
-        mNextQuestionButton.setOnClickListener { mPresenter.getNextQuestion() }
+        mNextQuestionButton.setOnClickListener {
+            mPresenter.getNextQuestion()
+            mAdCounter++
+            if (mAdCounter >= 20) {
+                if (!mInterstitialAd.isLoading || !mInterstitialAd.isLoaded)
+                    mInterstitialAd.loadAd(AdRequest.Builder().build())
+                else if (mInterstitialAd.isLoaded) {
+                    mInterstitialAd.show()
+                    mAdCounter = 0
+                }
+            }
+        }
 
         if (savedInstanceState != null) {
             //mPresenter.showQuestion(savedInstanceState.getInt(QUESTION))
