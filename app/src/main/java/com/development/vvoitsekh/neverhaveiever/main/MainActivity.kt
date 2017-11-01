@@ -3,10 +3,8 @@ package com.development.vvoitsekh.neverhaveiever.main
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ToggleButton
 import butterknife.BindView
@@ -15,6 +13,7 @@ import com.development.vvoitsekh.neverhaveiever.BaseActivity
 import com.development.vvoitsekh.neverhaveiever.R
 import com.development.vvoitsekh.neverhaveiever.question.QuestionActivity
 import com.development.vvoitsekh.neverhaveiever.settings.SettingsActivity
+import com.development.vvoitsekh.neverhaveiever.util.PrefUtil
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -22,9 +21,6 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     @Inject
     lateinit var mPresenter: MainPresenter
-
-//    @BindView(R.id.mainToolbar)
-//    lateinit var mToolbar: Toolbar
 
     @BindView(R.id.mainPlayButton)
     lateinit var mPlayButton: ImageButton
@@ -37,9 +33,6 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     @BindView(R.id.mainExtremeButton)
     lateinit var mExtremeButton: ToggleButton
-
-//    @BindView(R.id.mainSettingsButton)
-//    lateinit var mSettingsButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -57,8 +50,6 @@ class MainActivity : BaseActivity(), MainContract.View {
         mLightButton.setOnClickListener { mPresenter.applyKidsMode() }
         mNormalButton.setOnClickListener { mPresenter.applyTeenagerMode() }
         mExtremeButton.setOnClickListener { mPresenter.applyAdultMode() }
-
-        //mSettingsButton.setOnClickListener { startActivityForResult(Intent(this, SettingsActivity::class.java), 0) }
     }
 
     override fun showGame(modes: BooleanArray) {
@@ -72,7 +63,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(if (PrefUtil.isNightModeOn(this)) R.menu.menu_main_dark else R.menu.menu_main_light, menu)
         actionBar.setDisplayShowHomeEnabled(false)
         actionBar.setDisplayHomeAsUpEnabled(false)
         return super.onCreateOptionsMenu(menu)

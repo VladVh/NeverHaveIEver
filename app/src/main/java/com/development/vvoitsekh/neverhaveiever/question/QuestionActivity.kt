@@ -4,10 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
-import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.v4.app.NavUtils
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.*
@@ -16,8 +14,8 @@ import butterknife.ButterKnife
 import com.development.vvoitsekh.neverhaveiever.BaseActivity
 import com.development.vvoitsekh.neverhaveiever.R
 import com.development.vvoitsekh.neverhaveiever.data.Question
-import com.development.vvoitsekh.neverhaveiever.main.MainActivity
 import com.development.vvoitsekh.neverhaveiever.settings.SettingsActivity
+import com.development.vvoitsekh.neverhaveiever.util.PrefUtil
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -98,10 +96,7 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_36dp)
-        }
+        menuInflater.inflate(if (PrefUtil.isNightModeOn(this)) R.menu.menu_main_dark else R.menu.menu_main_light, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

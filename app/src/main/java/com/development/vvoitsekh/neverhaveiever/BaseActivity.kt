@@ -25,7 +25,6 @@ open class BaseActivity : Activity() {
 //        val uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN
 //        decorView.systemUiVisibility = uiOptions
 
-
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
         val nightMode = pref.getBoolean("NeverIHaveEver.night_mode", false)
         setTheme(if (nightMode) R.style.AppThemeDark else R.style.AppTheme)
