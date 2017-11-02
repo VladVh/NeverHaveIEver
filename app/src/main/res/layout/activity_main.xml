@@ -20,7 +20,7 @@
             <!--android:paddingStart="20dp"-->
             <!--android:background="@android:color/transparent"-->
             <!--android:src="@drawable/ic_arrow_back_black_36dp"/>-->
-        <!---->
+
         <!--<ImageButton-->
             <!--android:id="@+id/mainSettingsButton"-->
             <!--android:layout_width="wrap_content"-->
@@ -28,7 +28,7 @@
             <!--android:layout_gravity="right"-->
             <!--android:padding="10dp"-->
             <!--android:background="@android:color/transparent"-->
-            <!--android:src="@drawable/ic_settings_black_36dp"/>-->
+            <!--android:src="@drawable/ic_settings_black_48dp"/>-->
 
     <!--</android.support.v7.widget.Toolbar>-->
 
@@ -79,4 +79,10 @@
         android:gravity="center_vertical"
         android:textAlignment="center"/>
 
+    <include layout="@layout/activity_ad"
+             android:id="@+id/includeAd"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignParentBottom="true"
+        />
 </RelativeLayout>

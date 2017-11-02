@@ -3,6 +3,7 @@ package com.development.vvoitsekh.neverhaveiever.main
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageButton
@@ -14,8 +15,18 @@ import com.development.vvoitsekh.neverhaveiever.R
 import com.development.vvoitsekh.neverhaveiever.question.QuestionActivity
 import com.development.vvoitsekh.neverhaveiever.settings.SettingsActivity
 import com.development.vvoitsekh.neverhaveiever.util.PrefUtil
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import dagger.android.AndroidInjection
 import javax.inject.Inject
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import com.development.vvoitsekh.neverhaveiever.util.ConnectivityStatus
+
 
 class MainActivity : BaseActivity(), MainContract.View {
 
@@ -40,10 +51,11 @@ class MainActivity : BaseActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
 
         ButterKnife.bind(this)
+        if (!mAdBanner.isLoading)
+            mAdBanner.loadAd(AdRequest.Builder().build())
 
         val typeface = Typeface.createFromAsset(assets, "fonts/Veles-Regular.0.9.2.otf")
         mAppName.typeface = typeface
-
 
         mPlayButton.setOnClickListener { mPresenter.startGame() }
 

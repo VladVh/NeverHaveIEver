@@ -39,5 +39,11 @@
 
     </TextSwitcher>
 
+    <include layout="@layout/activity_ad"
+             android:id="@+id/includeAd"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

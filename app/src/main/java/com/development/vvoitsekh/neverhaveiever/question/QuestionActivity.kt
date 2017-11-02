@@ -1,5 +1,6 @@
 package com.development.vvoitsekh.neverhaveiever.question
 
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -15,6 +16,7 @@ import com.development.vvoitsekh.neverhaveiever.BaseActivity
 import com.development.vvoitsekh.neverhaveiever.R
 import com.development.vvoitsekh.neverhaveiever.data.Question
 import com.development.vvoitsekh.neverhaveiever.settings.SettingsActivity
+import com.development.vvoitsekh.neverhaveiever.util.ConnectivityStatus
 import com.development.vvoitsekh.neverhaveiever.util.PrefUtil
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -36,7 +38,10 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
 
     private lateinit var mCurrentQuestion: Question
     private lateinit var mModes: BooleanArray
+    private var mQuestionId = -1
     private var mAdCounter = 0
+    private val AdThreshold = 30
+
     private lateinit var mGestureDetector: GestureDetector
 
     private lateinit var mInterstitialAd: InterstitialAd
@@ -59,14 +64,16 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
 
         ButterKnife.bind(this)
 
-        MobileAds.initialize(this, "ca-app-pub-6434220602939969~9178893473")
+        //MobileAds.initialize(this, "ca-app-pub-6434220602939969~9178893473")
+        if (!mAdBanner.isLoading)
+            mAdBanner.loadAd(AdRequest.Builder().build())
         mInterstitialAd = InterstitialAd(this)
         mInterstitialAd.adUnitId = "ca-app-pub-6434220602939969/1324454182"
         mInterstitialAd.adListener = object: AdListener() {
-            override fun onAdFailedToLoad(errorCode: Int) {
-                when (errorCode) {
-                    AdRequest.ERROR_CODE_INTERNAL_ERROR -> mInterstitialAd.loadAd(AdRequest.Builder().build())
-                }
+
+            override fun onAdLoaded() {
+                mInterstitialAd.show()
+                mAdCounter = 0
             }
         }
 
@@ -99,19 +106,16 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
         mNextQuestionButton.setOnClickListener {
             mPresenter.getNextQuestion()
             mAdCounter++
-            if (mAdCounter >= 20) {
+            if (ConnectivityStatus.isConnected(this) && mAdCounter >= AdThreshold) {
                 if (!mInterstitialAd.isLoading || !mInterstitialAd.isLoaded)
                     mInterstitialAd.loadAd(AdRequest.Builder().build())
-                else if (mInterstitialAd.isLoaded) {
-                    mInterstitialAd.show()
-                    mAdCounter = 0
-                }
             }
         }
 
         if (savedInstanceState != null) {
-            //mPresenter.showQuestion(savedInstanceState.getInt(QUESTION))
             mPresenter.getQuestions(savedInstanceState.getBooleanArray(LEVEL))
+
+            mModes = savedInstanceState.getBooleanArray(LEVEL)
         } else {
             mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
             mModes = intent.extras.getBooleanArray(LEVEL).copyOf()
@@ -150,6 +154,14 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
             outState.putBooleanArray(LEVEL, mModes)
         }
         super.onSaveInstanceState(outState)
+    }
+
+    override fun onResume() {
+        if (mQuestionId != -1) {
+            mPresenter.showQuestion(mQuestionId)
+            mQuestionId = -1
+        }
+        super.onResume()
     }
 
     override fun showNextQuestion(question: Question) {

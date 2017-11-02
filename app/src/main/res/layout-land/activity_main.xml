@@ -10,14 +10,21 @@
     <include layout="@layout/activity_base"
         android:id="@+id/include"/>
 
+    <include layout="@layout/activity_ad"
+             android:id="@+id/includeAd"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignParentBottom="true"
+        />
+
     <LinearLayout
         android:id="@+id/mainToggleButtonsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginBottom="40dp"
-        android:layout_alignParentBottom="true">
+        android:layout_marginBottom="20dp"
+        android:layout_above="@id/includeAd">
 
         <ToggleButton
             android:id="@+id/mainLightButton"
