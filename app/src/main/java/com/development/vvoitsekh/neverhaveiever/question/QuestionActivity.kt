@@ -92,7 +92,7 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
             val nightMode = pref.getBoolean("NeverIHaveEver.night_mode", false)
             textView.setTextColor(if (nightMode) Color.WHITE else Color.BLACK)
             textView.textSize = 22.0F
-            textView.setLineSpacing(10F, 1.1F)
+            textView.setLineSpacing(3F, 1.1F)
             textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
             // textView.typeface = typeface
 
@@ -114,11 +114,11 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
 
         if (savedInstanceState != null) {
             mPresenter.getQuestions(savedInstanceState.getBooleanArray(LEVEL))
-
             mModes = savedInstanceState.getBooleanArray(LEVEL)
         } else {
             mPresenter.getQuestions(intent.extras.getBooleanArray(LEVEL))
             mModes = intent.extras.getBooleanArray(LEVEL).copyOf()
+            mPresenter.getNextQuestion()
         }
     }
 

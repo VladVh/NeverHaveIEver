@@ -16,7 +16,6 @@ class QuestionPresenter @Inject constructor(view: QuestionContract.View, reposit
     private var mQuestionsRepository: QuestionsRepository = repository
 
     private var mQuestions: Array<Question> = emptyArray()
-    private lateinit var mObservable: Observable<Array<Question>>
 
     override fun getQuestions(modes: BooleanArray) {
         val observable = Observable.fromCallable { mQuestionsRepository.getQuestions(modes) }
@@ -25,13 +24,23 @@ class QuestionPresenter @Inject constructor(view: QuestionContract.View, reposit
                 .subscribe(
                         { result ->
                             mQuestions = result.copyOf()
-                            getNextQuestion() },
+                        },
                         { error -> Log.e("Database error", error.message)}
                 )
     }
 
     override fun getNextQuestion() {
-        mQuestionView.showNextQuestion(getRandomQuestion())
+        Observable.fromCallable {
+            while (mQuestions.isEmpty())
+                Thread.sleep(100)
+            }
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { _ -> mQuestionView.showNextQuestion(getRandomQuestion())
+                        }
+                )
+
     }
 
     override fun showQuestion(id: Int) {
