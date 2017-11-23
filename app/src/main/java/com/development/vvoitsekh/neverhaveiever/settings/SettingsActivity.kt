@@ -28,7 +28,6 @@ class SettingsActivity: Activity(){
     override fun onResume() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         super.onResume()
-        
     }
 
 
