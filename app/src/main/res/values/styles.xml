@@ -85,7 +85,7 @@
     </style>
 
     <style name="ImageButtonDark" parent="@android:style/Widget.Holo.ImageButton">
-        <item name="android:src">@drawable/ic_play_circle_dark3</item>
+        <item name="android:src">@drawable/ic_play_circle_dark</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
 </resources>

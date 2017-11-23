@@ -5,8 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.TypedValue
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.*
@@ -91,8 +93,13 @@ class QuestionActivity : BaseActivity(), QuestionContract.View {
             val pref = PreferenceManager.getDefaultSharedPreferences(this)
             val nightMode = pref.getBoolean("NeverIHaveEver.night_mode", false)
             textView.setTextColor(if (nightMode) Color.WHITE else Color.BLACK)
-            textView.textSize = 22.0F
-            textView.setLineSpacing(3F, 1.1F)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                textView.setLineSpacing(10F, 1.6F)
+            } else {
+                textView.setLineSpacing(-15F, 1F)
+            }
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22F)
+
             textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
             // textView.typeface = typeface
 
