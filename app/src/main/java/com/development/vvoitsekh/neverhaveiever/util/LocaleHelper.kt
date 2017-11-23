@@ -50,8 +50,10 @@ object LocaleHelper {
 
     @TargetApi(Build.VERSION_CODES.N)
     private fun updateResources(context: Context, language: String?): Context {
-        val locale = Locale.forLanguageTag(language)
-        Locale.setDefault(locale)
+        val locale: Locale = if (language.equals("en"))
+            Locale("en", language)
+        else
+            Locale("uk", language)
 
         val configuration = context.resources.configuration
         configuration.setLocale(locale)
